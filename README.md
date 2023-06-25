@@ -1,3 +1,5 @@
+## Project URL - https://seller-admin-trialshopy.netlify.app/
+
 ## Cloning and Running the Application in local
 
 First fork this repo and then Clone it into local.
