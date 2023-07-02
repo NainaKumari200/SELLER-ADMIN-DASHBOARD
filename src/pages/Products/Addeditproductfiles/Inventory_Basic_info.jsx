@@ -63,17 +63,6 @@ const Inventory_Basic_info =()=>{
                  />
             </button>
         </section> */}
-
-
-        <div className="flex items-stretch ml-5 mt-2 focus:bg-gray-900">
-        <button className="flex bg-gray-700 hover:bg-gray-900 text-white items-center px-4 py-1 gap-2 focus:outline-none">
-          Add Categories
-          <ion-icon name="send" className="text-white "></ion-icon>
-        </button>
-      </div>
-
-
-
         </section>
         </>
     )

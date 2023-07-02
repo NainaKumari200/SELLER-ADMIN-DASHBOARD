@@ -14,16 +14,17 @@ const Header = () => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="bg-[black] p-4  border-l-[1px] border-[grey]">
+      <div className="bg-customDark p-4">
         <div className="max-w-[3640px]  flex flex-row items-center justify-between  ">
           <div className=" flex flex-row  gap-[150px] sm:gap-[100px] justify-between items-center  ">
             <div class="flex items-stretch   ">
               <input
                 type="text"
+                placeholder="Search here..."
                 class=" sm:px-4 px-2 sm:py-2 py-0 rounded-l-md focus:outline-none   "
               />
 
-              <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-r-md focus:outline-none  ">
+              <button className="bg-customPurple text-white font-bold py-2 px-4 rounded-r-md focus:outline-none  ">
                 <ion-icon
                   name="search-outline"
                   className="text-white"
@@ -32,22 +33,22 @@ const Header = () => {
             </div>
           </div>
 
-          <div className="flex gap-1 items-center">
+          <div className="flex gap-2 items-center">
             <div className="text-white cursor-pointer">
-              <MdCircleNotifications onClick={() => setShow(!show)} size={35} />{" "}
+              <MdCircleNotifications onClick={() => setShow(!show)} size={25} />{" "}
             </div>
  {/* notification section starts here */}
  <div
               className={`
-      bg-[#090707]  text-white fixed  w-[29%] right-[6px]    z-10    
-        duration-700 ${show ? "top-[63px]" : "top-[-100%]"}
+      bg-white rounded-md shadow-lg fixed  w-[25%] right-44    z-10    
+        duration-700 ${show ? "top-[80px]" : "top-[-100%]"}
         `}
             >
               <div className="flex justify-between mb-3 px-2">
                 <span>Notifications</span>
-                <span className="text-[#ff00f27c]">Mark all as Read</span>
+                <span className="text-customPurple">Mark all as Read</span>
               </div>
-              <div className="scrollbar-thin scrollbar-track-white scrollbar-thumb-[#090707] max-h-[200px] ">
+              <div className="scrollbar-thin text-sm scrollbar-track-white scrollbar-thumb-white max-h-[200px] ">
                 {links.map((link) => (
                   <div className="flex justify-between items-center px-3  ">
                     <div className="flex gap-2 items-center">
@@ -70,8 +71,8 @@ const Header = () => {
             </div>
 
             <div>
-              <button className="flex cursor-pointer bg-white p-1  text-md items-center px-4 gap-3 focus:outline-none  ">
-                <FaUserAlt className="ml-2 scale-125  " />
+              <button className="flex cursor-pointer rounded-md font-semibold bg-white p-2 text-sm items-center px-4 gap-3 focus:outline-none  ">
+                <FaUserAlt className="scale-100  " />
                 My Account
               </button>
               {/* <FaUserCircle size={22} /> */}

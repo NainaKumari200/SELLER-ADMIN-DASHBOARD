@@ -14,16 +14,16 @@ const Header = () => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="bg-[black] p-4  border-l-[1px] border-[grey]">
+      <div className="bg-customDark p-4">
         <div className="max-w-[3640px]  flex flex-row items-center justify-between  ">
           <div className=" flex flex-row  gap-[150px] sm:gap-[100px] justify-between items-center  ">
             <div class="flex items-stretch   ">
               <input
                 type="text"
-                class=" sm:px-4 px-2 sm:py-2 py-0 rounded-l-md focus:outline-none   "
+                placeholder="Search here..."
+                class="sm:px-4 px-2 sm:py-2 py-0 rounded-l-md focus:outline-none"
               />
-
-              <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-r-md focus:outline-none  ">
+              <button className="bg-customPurple  text-white font-bold py-2 px-4 rounded-r-md focus:outline-none  ">
                 <ion-icon
                   name="search-outline"
                   className="text-white"
@@ -32,22 +32,20 @@ const Header = () => {
             </div>
           </div>
 
-          <div className="flex gap-1">
-            <div className="text-white cursor-pointer">
+          <div className="flex gap-1 items-center">
+            <div className="bg-customPurple rounded-full text-white cursor-pointer">
               <MdCircleNotifications onClick={() => setShow(!show)} size={25} />{" "}
             </div>
             {/* notification section starts here */}
             <div
               className={`
-      bg-[#090707]  text-white fixed  w-[29%] right-[6px]    z-10    
-        duration-700 ${show ? "top-[63px]" : "top-[-100%]"}
-        `}
-            >
-              <div className="flex justify-between mb-3 px-2">
+      bg-white rounded-md shadow-lg fixed  w-[25%] right-[40px] z-10    
+        duration-700 ${show ? "top-[80px]" : "top-[-100%]"}`}>
+              <div className="flex font-semibold justify-between mb-3 px-2">
                 <span>Notifications</span>
-                <span className="text-[#ff00f27c]">Mark all as Read</span>
+                <span className="text-customPurple cursor-pointer">Mark all as Read</span>
               </div>
-              <div className="scrollbar-thin scrollbar-track-white scrollbar-thumb-[#090707] max-h-[200px] ">
+              <div className="scrollbar-thin text-sm scrollbar-track-white scrollbar-thumb-white max-h-[200px] ">
                 {links.map((link) => (
                   <div className="flex justify-between items-center px-3  ">
                     <div className="flex gap-2 items-center">
@@ -68,10 +66,9 @@ const Header = () => {
                 ))}
               </div>
             </div>
-
-            <div className={`text-white cursor-pointer`}>
+            <div className={`bg-customPurple rounded-full text-white cursor-pointer`}>
               <NavLink to="/myaccount">
-                <FaUserCircle size={22} />
+                <FaUserCircle size={25} />
               </NavLink>
             </div>
           </div>

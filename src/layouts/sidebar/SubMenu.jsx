@@ -9,10 +9,10 @@ const SubMenu = ({ data }) => {
   return (
     <>
       <li
-        className={` ${pathname.includes(data.name) && "text-blue-600 bg-blue-100 "}  `}
+        className={` ${pathname.includes(data.name) && "text-white rounded-md bg-customPurple "}  `}
         onClick={() => setSubMenuOpen(!subMenuOpen)}
       >
- <NavLink className={`link hover:border-r hover:border-blue-600 hover:bg-blue-100 hover:text-blue-600 shadow-lg`} to={`/${data.name}`}>
+ <NavLink className={`link`} to={`/${data.name}`}>
         <data.icon size={23} className="min-w-max" />
         <p className="flex-1 capitalize text-base">{data.name}</p>
         <IoIosArrowDown
@@ -31,14 +31,14 @@ const SubMenu = ({ data }) => {
                 height: 0,
               }
         }
-        className="flex h-0 flex-col pl-14 text-[0.8rem] font-normal overflow-hidden"
+        className="flex flex-col text-[1.3rem] font-normal overflow-hidden"
       >
-        {data.menus?.map((men,index) => (
+        {data.menus?.map((men) => (
           <li >
-            {/* className="hover:text-blue-600 hover:font-medium" */}
+            {/* className= hover:font-medium" */}
             <NavLink
               to={`/${data.name}/${men.name}`}
-              className="link !bg-transparent capitalize hover:text-blue-600"
+              className="link !bg-transparent capitalize"
             >
                 {/* <men.icon size={23} className="min-w-max" /> */}
                 <div className="min-w-max">{men.icon}</div>

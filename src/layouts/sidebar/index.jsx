@@ -5,18 +5,14 @@ import { motion } from "framer-motion";
 
 // * React icons
 import { IoIosArrowBack } from "react-icons/io";
-import { SlSettings } from "react-icons/sl";
 import { AiOutlineAppstore, AiOutlineInfoCircle } from "react-icons/ai";
 import {BiCategory} from "react-icons/bi";
-import { BsCartDash, BsPeople,BsInfoCircleFill } from "react-icons/bs";
-import { HiOutlineDatabase } from "react-icons/hi";
+import { BsCartDash } from "react-icons/bs";
 import { TbReportAnalytics } from "react-icons/tb";
-import { RiBuilding3Line } from "react-icons/ri";
 import { useMediaQuery } from "react-responsive";
-import { MdMenu, MdBusiness,MdCategory,MdRateReview,MdPayments, MdOutlineLocalOffer, MdOutlineLocalShipping } from "react-icons/md";
-import { FiLogOut } from "react-icons/fi";
-import {FaCloudUploadAlt,FaMoneyCheckAlt, FaShippingFast} from "react-icons/fa";
-import { NavLink, useLocation, useRoutes } from "react-router-dom";
+import { MdMenu,MdRateReview, MdOutlineLocalOffer, MdOutlineLocalShipping } from "react-icons/md";
+import {FaCloudUploadAlt,FaMoneyCheckAlt} from "react-icons/fa";
+import { NavLink, useLocation} from "react-router-dom";
 
 const Sidebar = () => {
   let isTabletMid = useMediaQuery({ query: "(max-width: 767px)" });
@@ -68,9 +64,35 @@ const Sidebar = () => {
           },
         },
       };
-
-  const subMenusList = [
-    {
+      
+      const subMenusList = [
+        {
+          name: "Products",
+          icon: TbReportAnalytics,
+          menus: [
+            {
+                  
+              name: "Bulk Upload ",
+              icon: <FaCloudUploadAlt />,
+            },
+            {
+      
+              name: "Category",
+              icon: <BiCategory />,
+            },
+            {
+            
+              name: "Commission",
+              icon: <FaMoneyCheckAlt />,
+            },
+            {
+            
+              name: "Reviews",
+              icon: <MdRateReview />,
+            },
+          ],
+        },
+        {
       name: "Orders",
       icon: BsCartDash,
       menus: [
@@ -104,33 +126,7 @@ const Sidebar = () => {
         },
         {
         
-          name: "Address",
-          icon: <MdRateReview />,
-        },
-      ],
-    },
-    {
-      name: "Products",
-      icon: TbReportAnalytics,
-      menus: [
-        {
-              
-          name: "Bulk Upload ",
-          icon: <FaCloudUploadAlt />,
-        },
-        {
-  
-          name: "Category",
-          icon: <BiCategory />,
-        },
-        {
-        
-          name: "Commission",
-          icon: <FaMoneyCheckAlt />,
-        },
-        {
-        
-          name: "Reviews",
+          name: "Address Types",
           icon: <MdRateReview />,
         },
       ],
@@ -141,7 +137,7 @@ const Sidebar = () => {
     <div>
       <div
         onClick={() => setOpen(false)}
-        className={`md:hidden fixed inset-0 max-h-screen z-[998] bg-black/50 ${
+        className={`md:hidden fixed inset-0 max-h-screen z-[998] bg-customDark/50 ${
           open ? "block" : "hidden"
         } `}
       ></div>
@@ -150,11 +146,11 @@ const Sidebar = () => {
         variants={Nav_animation}
         initial={{ x: isTabletMid ? -250 : 0 }}
         animate={open ? "open" : "closed"}
-        className=" bg-white text-gray shadow-lg z-[999] max-w-[16rem]  w-[16rem] 
+        className=" bg-customDark text-white z-[999] max-w-[16rem]  w-[16rem] 
             overflow-hidden md:relative fixed
          h-screen "
       >
-        <div className="flex items-center gap-2.5 font-medium border-b py-3 border-slate-300  mx-3">
+        <div className="flex items-center gap-2.5 font-medium py-3 mx-3">
           {/* <img
             src="https://img.icons8.com/color/512/firebase.png"
             width={45}
@@ -165,55 +161,58 @@ const Sidebar = () => {
         </div>
 
         <div className="flex flex-col  h-full">
-          <ul className="whitespace-pre px-2.5 text-[0.9rem] py-5 flex flex-col gap-1  font-medium overflow-x-hidden scrollbar-thin scrollbar-track-white scrollbar-thumb-slate-100   md:h-[68%] h-[70%]">
+          <ul className="whitespace-pre px-2.5 text-[0.9rem] py-5 flex flex-col gap-1  font-medium overflow-x-hidden scrollbar-thin scrollbar-track-customDark scrollbar-thumb-customDark   md:h-[68%] h-[70%]">
             <li>
-              <NavLink to={"/"} className="link shadow-lg text-base hover:bg-blue-100 hover:text-blue-600 hover:border-r hover:border-blue-600">
+              <NavLink to={"/"} className="link text-base hover:text-gray-100">
                 <AiOutlineAppstore size={23} className="min-w-max" />
                 Dashboard
               </NavLink>
             </li>
             {/* <li>
-              <NavLink to={"/orders"} className="link shadow-lg text-base hover:bg-blue-100 hover:text-blue-600 hover:border-r hover:border-blue-600">
+              <NavLink to={"/orders"} className="link text-base hover:text-gray-100">
                 <BsCartDash size={23} className="min-w-max" />
                 Orders
-              </NavLink>
-            </li> */}
+                </NavLink>
+              </li> */}
+              {(open || isTabletMid) && (
+                <div>
+                {subMenusList?.map((menu,index) => (
+                    <div  className="flex flex-col gap-1">
+                      <SubMenu data={menu} key={index} />
+                    </div>
+                  ))}
+                </div>
+              )}
             <li>
-              <NavLink to={"/offers"} className="link shadow-lg text-base hover:bg-blue-100 hover:text-blue-600 hover:border-r hover:border-blue-600">
+              <NavLink to={"/offers"} className="link text-base hover:text-gray-100">
                 <MdOutlineLocalOffer size={23} className="min-w-max" />
-                
                 Offers
               </NavLink>
             </li>
              {/* <li>
-              <NavLink to={"/customers"} className="link shadow-lg text-base hover:bg-blue-100 hover:text-blue-600 hover:border-r hover:border-blue-600">
+              <NavLink to={"/customers"} className="link text-base hover:text-gray-100">
                 <BsPeople size={23} className="min-w-max" />
                 Customers
               </NavLink>
             </li> */}
             <li>
-              <NavLink to={"/tracking"} className="link shadow-lg text-base hover:bg-blue-100 hover:text-blue-600 hover:border-r hover:border-blue-600">
+              <NavLink to={"/tracking"} className="link text-white text-base hover:text-gray-100">
                 <MdOutlineLocalShipping size={23} className="min-w-max" />
                 Tracking
               </NavLink>
             </li>
 
-            {(open || isTabletMid) && (
-              <div className="border-y py-5 border-slate-300 ">
-              {subMenusList?.map((menu,index) => (
-                  <div  className="flex flex-col gap-1">
-                    <SubMenu data={menu} key={index} />
-                  </div>
-                ))}
-              </div>
-            )}
           </ul>
           {open && (
-            <div className="  flex-1 text-sm z-50  max-h-48 my-auto  whitespace-pre   w-full  font-medium  cursor-pointer">
-              <div className="flex border-y border-slate-300 p-4 shadow-lg items-center gap-6 justify-center text-base hover:border-r hover:border-r-blue-600">
-                <FiLogOut />
-                <p className="">Log Out</p>
+            <div className="flex-1 z-50 m-4 max-h-48 my-auto  whitespace-pre font-medium  cursor-pointer">
+              <NavLink to={"/login"}>
+              <div className="flex text-white bg-customPurple rounded-md p-2 items-center gap-2 justify-start">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.5 12C7.5 11.8011 7.57902 11.6103 7.71967 11.4697C7.86032 11.329 8.05109 11.25 8.25 11.25H15V6.375C15 4.875 13.4161 3.75 12 3.75H4.875C4.17904 3.75074 3.51179 4.02755 3.01967 4.51967C2.52755 5.01179 2.25074 5.67904 2.25 6.375V17.625C2.25074 18.321 2.52755 18.9882 3.01967 19.4803C3.51179 19.9725 4.17904 20.2493 4.875 20.25H12.375C13.071 20.2493 13.7382 19.9725 14.2303 19.4803C14.7225 18.9882 14.9993 18.321 15 17.625V12.75H8.25C8.05109 12.75 7.86032 12.671 7.71967 12.5303C7.57902 12.3897 7.5 12.1989 7.5 12ZM21.5302 11.4698L17.7802 7.71984C17.6384 7.58513 17.4495 7.51114 17.254 7.51364C17.0584 7.51614 16.8715 7.59495 16.7332 7.73325C16.5949 7.87155 16.5161 8.0584 16.5136 8.25398C16.5111 8.44955 16.5851 8.63836 16.7198 8.78016L19.1892 11.25H15V12.75H19.1892L16.7198 15.2198C16.6473 15.2888 16.5892 15.3716 16.5492 15.4633C16.5091 15.555 16.4878 15.6539 16.4865 15.754C16.4852 15.8541 16.504 15.9534 16.5417 16.0461C16.5794 16.1389 16.6353 16.2231 16.7061 16.2939C16.7769 16.3647 16.8611 16.4206 16.9539 16.4583C17.0466 16.496 17.1459 16.5148 17.246 16.5135C17.3461 16.5122 17.445 16.4909 17.5367 16.4508C17.6284 16.4108 17.7112 16.3527 17.7802 16.2802L21.5302 12.5302C21.6707 12.3895 21.7497 12.1988 21.7497 12C21.7497 11.8012 21.6707 11.6105 21.5302 11.4698Z" fill="white"/>
+</svg>
+                <p>Log Out</p>
               </div>
+              </NavLink>
             </div>
           )}
         </div>
