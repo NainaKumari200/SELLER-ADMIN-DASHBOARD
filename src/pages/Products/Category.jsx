@@ -21,7 +21,7 @@ const Category = () => {
 </defs>
 </svg>
 
-        <div className="font-bold ml-2 items-center text-lg">Categories</div>
+      <div className="font-bold ml-2 items-center text-lg">Categories</div>
       </div>
 
       <div className="ml-5 mt-1 flex  gap-20">
@@ -75,7 +75,7 @@ const Category = () => {
         </button>
       </div>
 
-      <div className="ml-5 mt-2">
+      <div className="mt-4">
         <Categorytable />
       </div>
     </>

@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import Topbar2 from "../../layouts/Topbar2";
+import { HiEye } from "react-icons/hi";
 import { FaSort } from "react-icons/fa";
+import {
+  MdOutlineKeyboardArrowUp,
+  MdOutlineKeyboardArrowDown,
+} from "react-icons/md";
 import { NavLink } from "react-router-dom";
+import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import mock from "../../dummy_data2.json";
 
@@ -94,9 +100,9 @@ const Reviews = () => {
     setSelectedStatus(status);
   };
 
-  // const handleDateChange = (date) => {
-  //   setSelectedDate(date);
-  // };
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
 
   const handleFilterSubmit = () => {
     // Apply filter logic here
@@ -135,7 +141,93 @@ const Reviews = () => {
           </button>
         </div>
 
+        {/* Filter */}
+        <div className="flex mr-4">
+           <div className="relative flex items-stretch my-4 focus:bg-gray-900">
+            <button
+              className="flex bg-customPurple text-white items-center px-4 rounded-md focus:outline-none"
+              onClick={handleFilterToggle}
+            >
+              <ion-icon name="filter-outline" className="text-white"></ion-icon>
+              Filter
+            </button>
+          </div> 
+        </div>
       </div>
+       {/* Filter Dropdown  */}
+       {showFilter && (
+        <div className="absolute mt-28 right-4 top-16 w-60 bg-white rounded-md shadow-md">
+          <div>
+            <div
+              className="flex items-center justify-between p-1"
+              onClick={handleStatusToggle}
+            >
+              <label className="p-2 text-gray-800 font-normal">
+                Select Status
+              </label>
+              {showStatus ? (
+                <MdOutlineKeyboardArrowUp />
+              ) : (
+                <MdOutlineKeyboardArrowDown />
+              )}
+            </div>
+            <hr className="h-px bg-black"/>
+            {showStatus && (
+              <div className="text-gray-700 mb-2">
+                <div className="flex my-2 items-center pt-1 pb-2 px-1 justify-between border-b border-black text-sm">
+                  <label htmlFor="active" className="ml-2">
+                    Active
+                  </label>
+                  <input className="rounded-full text-black" type="checkbox" id="active"
+                    name="status"
+                    value="active"
+                    checked={selectedStatus === "active"}
+                    onChange={() => handleStatusChange("active")}/>
+                </div>
+                <div className="flex my-2 items-center pt-1 pb-2 px-1 justify-between border-b border-black text-sm">
+                  <label htmlFor="deactive" className="ml-2">
+                    Deactive
+                  </label>
+                  <input className="rounded-full text-black" type="checkbox"
+                    id="deactive"
+                    name="status"
+                    value="deactivated"
+                    checked={selectedStatus === "deactivated"}
+                    onChange={() => handleStatusChange("deactivated")}/>
+                </div>
+              </div>
+            )}
+            <div
+              className="flex items-center justify-between pt-1 pb-2 px-1"
+              onClick={handleCalendarToggle}
+            >
+              <label className="px-2 text-gray-800 font-normal hover:cursor-pointer">
+                By Date
+              </label>
+              {showCalendar ? (
+                <MdOutlineKeyboardArrowUp />
+              ) : (
+                <MdOutlineKeyboardArrowDown />
+              )}
+            </div>
+            <div>
+              {showCalendar && (
+                <div className="relative">
+                  <Calendar onChange={handleDateChange} value={selectedDate} />
+                </div>
+              )}
+            </div>
+            <div className="flex justify-center mb-2">
+              <button
+                className="bg-customPurple text-white font-semibold py-2 px-4 rounded-md focus:outline-none"
+                onClick={handleFilterSubmit}
+              >
+                Apply
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Table */}
       <div className="rounded-lg shadow overflow-x-auto">
@@ -145,8 +237,8 @@ const Reviews = () => {
               <table className="w-full">
                 <thead>
                   <tr className="bg-white border-b-2">
-                    <th>S. No.</th>
-                    <th className="pl-10">
+                    <th className="mytable">S. No.</th>
+                    <th>
                       <div className="flex items-center">
                         Product Id
                         <FaSort
@@ -158,7 +250,7 @@ const Reviews = () => {
                       </div>
                     </th>
                     {/* <th className="pr-9 ">Product</th> */}
-                    <th className="pl-10">
+                    <th>
                       <div className="flex items-center">
                         Product Name
                         <FaSort
@@ -181,8 +273,8 @@ const Reviews = () => {
                         />
                       </div>
                     </th> */}
-                    <th className="pr-9 ">Rating</th>
-                    <th className=" ">Total Reviews</th>
+                    <th>Rating</th>
+                    <th>Total Reviews</th>
                     {/* <th className="pr-9 ">Currently</th> */}
                     {/* <th className="pr-9">
                       <div className="flex items-center">
@@ -215,9 +307,9 @@ const Reviews = () => {
                       key={startIndex + d.id}
                       className={alternate(startIndex + index+1)}
                     >
-                      <td className="pl-6">{startIndex + index + 1}</td>
+                      <td className="mytable">{startIndex + index + 1}</td>
 
-                      <td className="pl-10">{d.product_id}</td>
+                      <td>{d.product_id}</td>
                       {/* <td className="pl-2 h-2 w-2">
                       <img
                         src={d.product}
@@ -226,17 +318,16 @@ const Reviews = () => {
                       />
                       </td> */}
 
-                      <td className="pl-10">{d.product_name}</td>
+                      <td>{d.product_name}</td>
                       {/* <td className="pl-8">{d.product_name}</td> */}
-                      <td className="pl-14">{d.rating}</td>
-                      <td className="pl-16">{d.total_reviews}</td>
+                      <td>{d.rating}</td>
+                      <td>{d.total_reviews}</td>
                       {/* <td className="pl-4">{d.currently}</td> */}
                       {/* <td>{new Date(d.date).toLocaleDateString()}</td> */}
                       {/* <td className="">{getOrderStatus(d.status)}</td> */}
                       <td>
                         <div className="flex justify-center items-center gap-2 underline">
-
-                        <ion-icon name="eye-outline"></ion-icon>
+                        <HiEye/>
                         <NavLink to="/products/reviews/reviewsdetails">
 <p className="text-black">View Details</p>
                         </NavLink>

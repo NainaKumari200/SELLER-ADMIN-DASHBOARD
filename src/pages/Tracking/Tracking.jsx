@@ -158,13 +158,13 @@ const Tracking = () => {
       </div>
        {/* Filter Dropdown  */}
        {showFilter && (
-        <div className="absolute mt-16 right-4 top-16 w-50 bg-white rounded-md shadow-md">
-          <div className="p-2">
+        <div className="absolute mt-28 right-4 top-16 w-60 bg-white rounded-md shadow-md">
+          <div>
             <div
-              className="flex items-center justify-between"
+              className="flex items-center justify-between p-1"
               onClick={handleStatusToggle}
             >
-              <label className="p-2 text-gray-700 font-normal">
+              <label className="p-2 text-gray-800 font-normal">
                 Select Status
               </label>
               {showStatus ? (
@@ -173,42 +173,37 @@ const Tracking = () => {
                 <MdOutlineKeyboardArrowDown />
               )}
             </div>
+            <hr className="h-px bg-black"/>
             {showStatus && (
-              <div className="form-radio text-gray-700">
-                <div className="flex items-center justify-between text-sm">
+              <div className="text-gray-700 mb-2">
+                <div className="flex my-2 items-center pt-1 pb-2 px-1 justify-between border-b border-black text-sm">
                   <label htmlFor="active" className="ml-2">
                     Active
                   </label>
-                  <input
-                    type="radio"
-                    id="active"
+                  <input className="rounded-full text-black" type="checkbox" id="active"
                     name="status"
                     value="active"
                     checked={selectedStatus === "active"}
-                    onChange={() => handleStatusChange("active")}
-                  />
+                    onChange={() => handleStatusChange("active")}/>
                 </div>
-                <u></u>
-                <div className="flex items-center justify-between text-sm">
+                <div className="flex my-2 items-center pt-1 pb-2 px-1 justify-between border-b border-black text-sm">
                   <label htmlFor="deactive" className="ml-2">
                     Deactive
                   </label>
-                  <input
-                    type="radio"
+                  <input className="rounded-full text-black" type="checkbox"
                     id="deactive"
                     name="status"
                     value="deactivated"
                     checked={selectedStatus === "deactivated"}
-                    onChange={() => handleStatusChange("deactivated")}
-                  />
+                    onChange={() => handleStatusChange("deactivated")}/>
                 </div>
               </div>
             )}
             <div
-              className="flex items-center justify-between"
+              className="flex items-center justify-between pt-1 pb-2 px-1"
               onClick={handleCalendarToggle}
             >
-              <label className="p-2 text-gray-700 font-normal hover:cursor-pointer">
+              <label className="px-2 text-gray-800 font-normal hover:cursor-pointer">
                 By Date
               </label>
               {showCalendar ? (
@@ -217,14 +212,14 @@ const Tracking = () => {
                 <MdOutlineKeyboardArrowDown />
               )}
             </div>
-            <div className="mt-4">
+            <div>
               {showCalendar && (
                 <div className="relative">
                   <Calendar onChange={handleDateChange} value={selectedDate} />
                 </div>
               )}
             </div>
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-center mb-2">
               <button
                 className="bg-customPurple text-white font-semibold py-2 px-4 rounded-md focus:outline-none"
                 onClick={handleFilterSubmit}
@@ -245,8 +240,8 @@ const Tracking = () => {
               <table className="w-full">
                 <thead>
                   <tr className="bg-white border-b-2">
-                    <th>S. No.</th>
-                    <th className="pl-10">
+                    <th className="mytable">S. No.</th>
+                    <th>
                       <div className="flex items-center">
                         Tracking ID
                         <FaSort
@@ -257,7 +252,7 @@ const Tracking = () => {
                         />
                       </div>
                     </th>
-                    <th className="pl-10">
+                    <th className="px-12">
                       <div className="flex items-center">
                         Product Name
                         <FaSort
@@ -270,9 +265,9 @@ const Tracking = () => {
                     </th>
 
                     <th className="pr-9">Shipping By </th>
-                    <th className="pr-9 ">Shipping From</th>
-                    <th className="pr-9 ">Delivering To</th>
-                    <th className="pr-9 ">Currently</th>
+                    <th className="pr-9">Shipping From</th>
+                    <th className="pr-9">Delivering To</th>
+                    <th className="pr-9">Currently</th>
                     {/* <th className="pr-9">
                       <div className="flex items-center">
                         Date
@@ -304,15 +299,15 @@ const Tracking = () => {
                       key={startIndex + d.id}
                       className={alternate(startIndex + index+1)}
                     >
-                      <td className="pl-4">{startIndex + index + 1}</td>
+                      <td className="mytable">{startIndex + index + 1}</td>
 
-                      <td className="pl-10">{d.tracking_id}</td>
+                      <td>{d.tracking_id}</td>
 
-                      <td className="pl-10">{d.product_name}</td>
-                      <td className="pl-8">{d.shipping_by}</td>
-                      <td className="pl-4">{d.shipping_from}</td>
-                      <td className="pl-4">{d.delivering_to}</td>
-                      <td className="pl-4">{d.currently}</td>
+                      <td className="pl-12">{d.product_name}</td>
+                      <td>{d.shipping_by}</td>
+                      <td>{d.shipping_from}</td>
+                      <td>{d.delivering_to}</td>
+                      <td>{d.currently}</td>
                       {/* <td>{new Date(d.date).toLocaleDateString()}</td> */}
                       {/* <td>{getOrderStatus(d.status)}</td> */}
                       <td>

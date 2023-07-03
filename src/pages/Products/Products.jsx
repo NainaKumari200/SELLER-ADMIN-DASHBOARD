@@ -102,9 +102,9 @@ const Offers = () => {
     setSelectedStatus(status);
   };
 
-  // const handleDateChange = (date) => {
-  //   setSelectedDate(date);
-  // };
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
 
   const handleFilterSubmit = () => {
     // Apply filter logic here
@@ -150,9 +150,9 @@ const Offers = () => {
               Add Products
             </button>
           </div>
-
-          {/* Filter  */}
-          <div className="relative flex items-stretch my-4 focus:bg-gray-900">
+          {/* Filter */}
+        <div className="flex">
+           <div className="relative flex items-stretch my-4 focus:bg-gray-900">
             <button
               className="flex bg-customPurple text-white items-center px-4 rounded-md focus:outline-none"
               onClick={handleFilterToggle}
@@ -160,18 +160,19 @@ const Offers = () => {
               <ion-icon name="filter-outline" className="text-white"></ion-icon>
               Filter
             </button>
-          </div>
+          </div> 
+        </div>
         </div>
       </div>
-      {/* Filter Dropdown  */}
-      {showFilter && (
-        <div className="absolute mt-16 right-4 top-16 w-50 bg-white rounded-md shadow-md">
-          <div className="p-2">
+       {/* Filter Dropdown  */}
+       {showFilter && (
+        <div className="absolute mt-28 right-4 top-16 w-60 bg-white rounded-md shadow-md">
+          <div>
             <div
-              className="flex items-center justify-between"
+              className="flex items-center justify-between p-1"
               onClick={handleStatusToggle}
             >
-              <label className="p-2 text-gray-700 font-normal">
+              <label className="p-2 text-gray-800 font-normal">
                 Select Status
               </label>
               {showStatus ? (
@@ -180,42 +181,37 @@ const Offers = () => {
                 <MdOutlineKeyboardArrowDown />
               )}
             </div>
+            <hr className="h-px bg-black"/>
             {showStatus && (
-              <div className="form-radio text-gray-700">
-                <div className="flex items-center justify-between text-sm">
+              <div className="text-gray-700 mb-2">
+                <div className="flex my-2 items-center pt-1 pb-2 px-1 justify-between border-b border-black text-sm">
                   <label htmlFor="active" className="ml-2">
                     Active
                   </label>
-                  <input
-                    type="radio"
-                    id="active"
+                  <input className="rounded-full text-black" type="checkbox" id="active"
                     name="status"
                     value="active"
                     checked={selectedStatus === "active"}
-                    onChange={() => handleStatusChange("active")}
-                  />
+                    onChange={() => handleStatusChange("active")}/>
                 </div>
-                <u></u>
-                <div className="flex items-center justify-between text-sm">
+                <div className="flex my-2 items-center pt-1 pb-2 px-1 justify-between border-b border-black text-sm">
                   <label htmlFor="deactive" className="ml-2">
                     Deactive
                   </label>
-                  <input
-                    type="radio"
+                  <input className="rounded-full text-black" type="checkbox"
                     id="deactive"
                     name="status"
                     value="deactivated"
                     checked={selectedStatus === "deactivated"}
-                    onChange={() => handleStatusChange("deactivated")}
-                  />
+                    onChange={() => handleStatusChange("deactivated")}/>
                 </div>
               </div>
             )}
             <div
-              className="flex items-center justify-between"
+              className="flex items-center justify-between pt-1 pb-2 px-1"
               onClick={handleCalendarToggle}
             >
-              <label className="p-2 text-gray-700 font-normal hover:cursor-pointer">
+              <label className="px-2 text-gray-800 font-normal hover:cursor-pointer">
                 By Date
               </label>
               {showCalendar ? (
@@ -224,14 +220,14 @@ const Offers = () => {
                 <MdOutlineKeyboardArrowDown />
               )}
             </div>
-            <div className="mt-4">
+            <div>
               {showCalendar && (
                 <div className="relative">
                   <Calendar onChange={handleDateChange} value={selectedDate} />
                 </div>
               )}
             </div>
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-center mb-2">
               <button
                 className="bg-customPurple text-white font-semibold py-2 px-4 rounded-md focus:outline-none"
                 onClick={handleFilterSubmit}
@@ -241,7 +237,7 @@ const Offers = () => {
             </div>
           </div>
         </div>
-      )}
+      )}  
 
       {/* Table */}
       <div className="rounded-lg shadow overflow-x-auto">
@@ -251,9 +247,9 @@ const Offers = () => {
               <table className="w-full">
                 <thead>
                   <tr className="bg-white border-b-2">
-                    <th>S. No.</th>
-                    <th className="pl-10">
-                      <div className="flex items-center">
+                    <th className="mytable w-20">S. No.</th>
+                    <th className="w-32">
+                      <div className="flex items-center justify-between">
                         Product Id
                         <FaSort
                           className="ml-1 hover:cursor-pointer"
@@ -263,9 +259,9 @@ const Offers = () => {
                         />
                       </div>
                     </th>
-                    <th className="pr-9 ">Product</th>
-                    <th className="pl-10">
-                      <div className="flex items-center">
+                    <th>Product Img</th>
+                    <th className="w-1/2">
+                      <div className="flex items-center p-2">
                         Product Name
                         <FaSort
                           className="ml-1 hover:cursor-pointer"
@@ -275,34 +271,8 @@ const Offers = () => {
                         />
                       </div>
                     </th>
-
-                    {/* <th className="pr-6">
-                    <div className="flex items-center">
-                        Product Name
-                        <FaSort
-                          className="ml-1 hover:cursor-pointer"
-                          onClick={() => {
-                            sorting("product_name");
-                          }}
-                        />
-                      </div>
-                    </th> */}
-                    {/* <th className="pr-9 ">Rating</th> */}
-                    {/* <th className="pr-9 ">Total Reviews</th> */}
-                    {/* <th className="pr-9 ">Currently</th> */}
-                    {/* <th className="pr-9">
-                      <div className="flex items-center">
-                        Date
-                        <FaSort
-                          className="ml-1 hover:cursor-pointer"
-                          onClick={() => {
-                            sorting("date");
-                          }}
-                        />
-                      </div>
-                    </th> */}
-                    <th>
-                      <div className="flex items-center">
+                    <th className="w-20">
+                      <div className="flex items-center justify-between">
                         Status
                         <FaSort
                           className="hover:cursor-pointer"
@@ -321,25 +291,27 @@ const Offers = () => {
                       key={startIndex + d.id}
                       className={alternate(startIndex + index + 1)}
                     >
-                      <td className="pl-4">{startIndex + index + 1}</td>
+                      <td className="mytable">{startIndex + index + 1}</td>
 
-                      <td className="pl-10">{d.product_id}</td>
-                      <td className="pl-2 h-2 w-2">
+                      <td>{d.product_id}</td>
+                      <td className="">
+                      <div className="ml-[30%] ">
                         <img
                           src={d.product}
                           alt=""
                           className="w-8 h-8 rounded-full"
                         />
+                      </div>
                       </td>
 
-                      <td className="pl-10">{d.product_name}</td>
+                      <td className="p-2">{d.product_name}</td>
                       {/* <td className="pl-8">{d.product_name}</td> */}
                       {/* <td className="pl-10">{d.rating}</td> */}
                       {/* <td className="pl-14">{d.total_reviews}</td> */}
                       {/* <td className="pl-4">{d.currently}</td> */}
                       {/* <td>{new Date(d.date).toLocaleDateString()}</td> */}
-                      <td className="">{getOrderStatus(d.status)}</td>
-                      <td>
+                      <td className="w-16">{getOrderStatus(d.status)}</td>
+                      <td className="p-2">
                         <div className="flex justify-center">
                           <HiPencil
                             className="fill-gray-800 mr-2 hover:cursor-pointer"

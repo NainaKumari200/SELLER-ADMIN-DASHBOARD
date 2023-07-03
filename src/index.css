@@ -27,9 +27,10 @@ body .login-body{
   @apply bg-customPurple text-white;
 }
 
-.merchant-table{ 
-  @apply py-[4.5px] px-2.5 text-sm text-left border-y border-gray-200;
+.mytable{ 
+  @apply py-2.5 px-2.5 text-sm text-left border-y border-gray-200;
 }
+
 th,
 td {
   @apply py-[2.5px]  text-sm  border-y border-gray-200;
