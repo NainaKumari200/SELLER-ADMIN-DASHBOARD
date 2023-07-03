@@ -132,7 +132,7 @@ const Offers = () => {
             placeholder="Search here..."
             className="sm:px-4 px-2 sm:py-2 py-0 rounded-l-md focus:outline-gray-900 shadow-2xl"
           />
-          <button className="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-r-md focus:outline-none">
+          <button className="bg-customPurple text-white font-bold py-2 px-4 rounded-r-md focus:outline-none">
             <ion-icon name="search-outline" className="text-white"></ion-icon>
           </button>
         </div>
@@ -145,7 +145,7 @@ const Offers = () => {
               navigate("addproducts");
             }}
           >
-            <button className="flex bg-gray-700 hover:bg-gray-900 text-white items-center px-4 rounded-md focus:outline-none">
+            <button className="flex bg-customPurple text-white items-center px-4 rounded-md focus:outline-none">
               <AiOutlinePlus className="mr-1" />
               Add Products
             </button>
@@ -154,7 +154,7 @@ const Offers = () => {
           {/* Filter  */}
           <div className="relative flex items-stretch my-4 focus:bg-gray-900">
             <button
-              className="flex bg-gray-700 hover:bg-gray-900 text-white items-center px-4 rounded-md focus:outline-none"
+              className="flex bg-customPurple text-white items-center px-4 rounded-md focus:outline-none"
               onClick={handleFilterToggle}
             >
               <ion-icon name="filter-outline" className="text-white"></ion-icon>
@@ -233,7 +233,7 @@ const Offers = () => {
             </div>
             <div className="flex justify-center mt-4">
               <button
-                className="bg-gray-700 hover:bg-gray-900 text-white font-semibold py-2 px-4 rounded-md focus:outline-none"
+                className="bg-customPurple text-white font-semibold py-2 px-4 rounded-md focus:outline-none"
                 onClick={handleFilterSubmit}
               >
                 Apply

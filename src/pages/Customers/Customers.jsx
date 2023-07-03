@@ -1,5 +1,3 @@
-
-
 import React, { useState } from "react";
 import Topbar2 from "../../layouts/Topbar2";
 import { HiTrash, HiPencil } from "react-icons/hi";
@@ -134,7 +132,7 @@ const Customers = () => {
             placeholder="Search here..."
             className="sm:px-4 px-2 sm:py-2 py-0 rounded-l-md focus:outline-gray-900 shadow-2xl"
           />
-          <button className="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-r-md focus:outline-none">
+          <button className="bg-customPurple text-white font-bold py-2 px-4 rounded-r-md focus:outline-none">
             <ion-icon name="search-outline" className="text-white"></ion-icon>
           </button>
         </div>
@@ -142,12 +140,12 @@ const Customers = () => {
         {/* Add customer & filter */}
         <div className="flex mr-4">
            <div
-            className="flex items-stretch m-4 focus:bg-gray-900"
+            className="flex items-stretch m-4"
             onClick={() => {
               navigate('addCustomers');
             }}
           >
-            <button className="flex bg-gray-700 hover:bg-gray-900 text-white items-center px-4 rounded-md focus:outline-none">
+            <button className="flex bg-customPurple text-white items-center px-4 rounded-md focus:outline-none">
               <AiOutlinePlus className="mr-1" />Add Customers
             </button>
           </div> 
@@ -155,7 +153,7 @@ const Customers = () => {
           {/* Filter */}
           <div className="relative flex items-stretch my-4 focus:bg-gray-900">
             <button
-              className="flex bg-gray-700 hover:bg-gray-900 text-white items-center px-4 rounded-md focus:outline-none"
+              className="flex bg-customPurple text-white items-center px-4 rounded-md focus:outline-none"
               onClick={handleFilterToggle}
             >
               <ion-icon name="filter-outline" className="text-white"></ion-icon>
@@ -234,7 +232,7 @@ const Customers = () => {
             </div>
             <div className="flex justify-center mt-4">
               <button
-                className="bg-gray-700 hover:bg-gray-900 text-white font-semibold py-2 px-4 rounded-md focus:outline-none"
+                className="bg-customPurple text-white font-semibold py-2 px-4 rounded-md focus:outline-none"
                 onClick={handleFilterSubmit}
               >
                 Apply
@@ -276,7 +274,6 @@ const Customers = () => {
                     </th>
 
                     <th className="pr-9">E-Mail</th>
-                    <th className="pr-9 ">Amount</th>
                     <th className="pr-9">
                       <div className="flex items-center">
                         Date
@@ -288,6 +285,7 @@ const Customers = () => {
                         />
                       </div>
                     </th>
+                    <th className="pr-9 ">Amount</th>
                     <th>
                       <div className="flex items-center">
                         Status
@@ -314,8 +312,8 @@ const Customers = () => {
 
                       <td className="pl-10">{d.customer_name}</td>
                       <td className="pl-8">{d.email}</td>
-                      <td className="pl-4">{d.amount}</td>
                       <td>{new Date(d.date).toLocaleDateString()}</td>
+                      <td className="pl-4">{d.amount}</td>
                       <td>{getOrderStatus(d.status)}</td>
                       <td>
                         <div className="flex justify-center">

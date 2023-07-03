@@ -20,7 +20,7 @@ import Tracking from "./pages/Tracking/Tracking";
 import Country from "./pages/Customers/Country";
 import State from "./pages/Customers/State";
 import City from "./pages/Customers/City";
-import Address from "./pages/Customers/Address";
+import Address from "./pages/Customers/Address Types";
 import Details from "./pages/Orders/Details";
 import Addnewoffer from "./pages/Offers/Addnewoffer";
 import Basicinfo from "./pages/Orders/Basicinfo";
@@ -44,7 +44,8 @@ const App = () => {
   return (
     <RootLayout>
       <Routes>
-        <Route index element={<Dashboard />} />
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/myaccount" element={<Myaccount />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/basicinfo" element={<Basicinfo />} />

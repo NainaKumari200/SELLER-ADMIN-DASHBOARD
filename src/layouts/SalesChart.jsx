@@ -6,56 +6,57 @@ const SalesChart = () => {
 
     const data = [
         {
-            name: 0,
+            name: "JAN",
             sales: 7400,
             visits: 1400
         },
         {
-            name: 1,
+            name: "FEB",
             sales: 2600,
             visits: 9000
         },
         {
-            name: 2,
+            name: "MAR",
             sales: 2600,
             visits: 398
         },
         {
-            name: 3,
-            sales: 7400,
-            visits: 9000
-        },
-        {
-            name: 4,
+            name: "MAY",
             sales: 7580,
             visits: 5008
         },
         {
-            name: 5,
+            name: "JUNE",
             sales: 7350,
             visits: 8000
         },
         {
-            name: 6,
+            name: "JULY",
             sales: 2510,
             visits: 2460
         },
         {
-            name: 7,
+            name: "AUG",
             sales: 9000,
             visits: 7400
         },
         {
-            name: 8,
+            name: "SEPT",
             sales: 300,
             visits: 5000
         },
    
         {
-            name: 9,
+            name: "OCT",
             sales: 6000,
             visits: 2400
-        }
+        },
+
+        {
+            name: "NOV",
+            sales: 7400,
+            visits: 9000
+        },
     ]
     
 
@@ -90,31 +91,29 @@ const SalesChart = () => {
 			</div>
       </div> */}
 
-      <div className="h-[22rem] bg-white p-4 rounded-sm border border-gray-200 flex flex-col shadow-lg ">
-      
-			<strong className="text-gray-700 font-bold">Sales Overview</strong>
-            
-            
-			<div className="mt-3 w-full flex-1 text-xs shadow-lg">
+      <div className="h-[21rem] ml-4 bg-white p-4 rounded-md flex flex-col shadow-lg ">
+			<strong className="text-sm">Sales Overview</strong>
+			<div className="mt-3 w-full flex-1 text-xs ">
 				<ResponsiveContainer width="100%" height="100%">
 					<BarChart
 						width={500}
 						height={300}
 						data={data}
 						margin={{
-							top: 20,
+							top: 10,
 							right: 10,
 							left: -10,
 							bottom: 0
 						}}
+                        barCategoryGap={8}
 					>
-						<CartesianGrid strokeDasharray="3 3 0 0" vertical={false} />
-						<XAxis dataKey="name" />
-						<YAxis />
+						<CartesianGrid/>
+						<XAxis fontWeight={600} dataKey="name"/>
+						<YAxis fontWeight={600}/>
 						<Tooltip />
 						<Legend />
-						<Bar dataKey="sales" fill="#3cb371" />
-						<Bar dataKey="visits" fill="SlateBlue" />
+						<Bar dataKey="sales" fill="#0F172A"  radius={[10, 10, 10, 10]}/>
+						<Bar dataKey="visits" fill="#4F46E5"  radius={[10, 10, 10, 10]}/>
 					</BarChart>
 				</ResponsiveContainer>
 			</div>

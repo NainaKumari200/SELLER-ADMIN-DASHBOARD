@@ -1,23 +1,3 @@
-// import React from 'react'
-
-// const Offers = () => {
-//   return (
-//     <div>Offers</div>
-//   )
-// }
-
-// export default Offers
-
-
-
-
-
-
-
-
-
-
-
 import React, { useState } from "react";
 import Topbar2 from "../../layouts/Topbar2";
 import { HiTrash, HiPencil } from "react-icons/hi";
@@ -100,46 +80,46 @@ const Offers = () => {
     setCurrentPage(pageNumber);
   };
 
-  // const [showFilter, setShowFilter] = useState(false);
-  // const [selectedStatus, setSelectedStatus] = useState("");
-  // const [selectedDate, setSelectedDate] = useState("");
-  // const [showCalendar, setShowCalendar] = useState(false);
-  // const [showStatus, setShowStatus] = useState(false);
+  const [showFilter, setShowFilter] = useState(false);
+  const [selectedStatus, setSelectedStatus] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [showStatus, setShowStatus] = useState(false);
 
-  // const handleCalendarToggle = () => {
-  //   setShowCalendar(!showCalendar);
-  // };
+  const handleCalendarToggle = () => {
+    setShowCalendar(!showCalendar);
+  };
 
-  // const handleStatusToggle = () => {
-  //   setShowStatus(!showStatus);
-  // };
+  const handleStatusToggle = () => {
+    setShowStatus(!showStatus);
+  };
 
-  // const handleFilterToggle = () => {
-  //   setShowFilter(!showFilter);
-  // };
+  const handleFilterToggle = () => {
+    setShowFilter(!showFilter);
+  };
 
-  // const handleStatusChange = (status) => {
-  //   setSelectedStatus(status);
-  // };
+  const handleStatusChange = (status) => {
+    setSelectedStatus(status);
+  };
 
-  // const handleDateChange = (date) => {
-  //   setSelectedDate(date);
-  // };
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
 
-  // const handleFilterSubmit = () => {
-  //   // Apply filter logic here
-  //   const filteredData = mock.filter((d) => {
-  //     return (
-  //       (selectedStatus === "" ||
-  //         d.status.toLowerCase() === selectedStatus.toLowerCase()) &&
-  //       (selectedDate === "" ||
-  //         new Date(d.date).toLocaleDateString() ===
-  //           selectedDate.toLocaleDateString())
-  //     );
-  //   });
-  //   setData(filteredData);
-  //   setShowFilter(false);
-  // };
+  const handleFilterSubmit = () => {
+    // Apply filter logic here
+    const filteredData = mock.filter((d) => {
+      return (
+        (selectedStatus === "" ||
+          d.status.toLowerCase() === selectedStatus.toLowerCase()) &&
+        (selectedDate === "" ||
+          new Date(d.date).toLocaleDateString() ===
+            selectedDate.toLocaleDateString())
+      );
+    });
+    setData(filteredData);
+    setShowFilter(false);
+  };
 
   return (
     <>
@@ -152,12 +132,12 @@ const Offers = () => {
             placeholder="Search here..."
             className="sm:px-4 px-2 sm:py-2 py-0 rounded-l-md focus:outline-gray-900 shadow-2xl"
           />
-          <button className="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-r-md focus:outline-none">
+          <button className="bg-customPurple text-white font-bold py-2 px-4 rounded-r-md focus:outline-none">
             <ion-icon name="search-outline" className="text-white"></ion-icon>
           </button>
         </div>
 
-        {/* Add customer & filter */}
+        {/* Add offer & filter */}
         <div className="flex mr-4">
            <div
             className="flex items-stretch m-4 focus:bg-gray-900"
@@ -165,24 +145,24 @@ const Offers = () => {
               navigate('addnewoffer');
             }}
           >
-            <button className="flex bg-gray-700 hover:bg-gray-900 text-white items-center px-4 rounded-md focus:outline-none">
+            <button className="flex bg-customPurple text-white items-center px-4 rounded-md focus:outline-none">
               <AiOutlinePlus className="mr-1" />Add New Offer
             </button>
           </div> 
 
-           {/* Filter 
+           {/* Filter  */}
            <div className="relative flex items-stretch my-4 focus:bg-gray-900">
             <button
-              className="flex bg-gray-700 hover:bg-gray-900 text-white items-center px-4 rounded-md focus:outline-none"
+              className="flex bg-customPurple text-white items-center px-4 rounded-md focus:outline-none"
               onClick={handleFilterToggle}
             >
               <ion-icon name="filter-outline" className="text-white"></ion-icon>
               Filter
             </button>
-          </div>  */}
+          </div> 
         </div>
       </div>
-       {/* Filter Dropdown 
+       {/* Filter Dropdown  */}
        {showFilter && (
         <div className="absolute mt-16 right-4 top-16 w-50 bg-white rounded-md shadow-md">
           <div className="p-2">
@@ -252,7 +232,7 @@ const Offers = () => {
             </div>
             <div className="flex justify-center mt-4">
               <button
-                className="bg-gray-700 hover:bg-gray-900 text-white font-semibold py-2 px-4 rounded-md focus:outline-none"
+                className="bg-customPurple text-white font-semibold py-2 px-4 rounded-md focus:outline-none"
                 onClick={handleFilterSubmit}
               >
                 Apply
@@ -260,7 +240,7 @@ const Offers = () => {
             </div>
           </div>
         </div>
-      )}   */}
+      )}  
 
 
       {/* Table */}

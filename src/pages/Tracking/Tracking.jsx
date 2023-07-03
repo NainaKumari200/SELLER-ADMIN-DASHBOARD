@@ -1,18 +1,3 @@
-// import React from 'react'
-
-// const Tracking = () => {
-//   return (
-//     <div>Tracking</div>
-//   )
-// }
-
-// export default Tracking
-
-
-
-
-
-
 import React, { useState } from "react";
 import Topbar2 from "../../layouts/Topbar2";
 import { HiTrash, HiPencil } from "react-icons/hi";
@@ -95,50 +80,56 @@ const Tracking = () => {
     setCurrentPage(pageNumber);
   };
 
-  // const [showFilter, setShowFilter] = useState(false);
-  // const [selectedStatus, setSelectedStatus] = useState("");
-  // const [selectedDate, setSelectedDate] = useState("");
-  // const [showCalendar, setShowCalendar] = useState(false);
-  // const [showStatus, setShowStatus] = useState(false);
+  const [showFilter, setShowFilter] = useState(false);
+  const [selectedStatus, setSelectedStatus] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [showStatus, setShowStatus] = useState(false);
 
-  // const handleCalendarToggle = () => {
-  //   setShowCalendar(!showCalendar);
-  // };
+  const handleCalendarToggle = () => {
+    setShowCalendar(!showCalendar);
+  };
 
-  // const handleStatusToggle = () => {
-  //   setShowStatus(!showStatus);
-  // };
+  const handleStatusToggle = () => {
+    setShowStatus(!showStatus);
+  };
 
-  // const handleFilterToggle = () => {
-  //   setShowFilter(!showFilter);
-  // };
+  const handleFilterToggle = () => {
+    setShowFilter(!showFilter);
+  };
 
-  // const handleStatusChange = (status) => {
-  //   setSelectedStatus(status);
-  // };
+  const handleStatusChange = (status) => {
+    setSelectedStatus(status);
+  };
 
-  // const handleDateChange = (date) => {
-  //   setSelectedDate(date);
-  // };
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
 
-  // const handleFilterSubmit = () => {
-  //   // Apply filter logic here
-  //   const filteredData = mock.filter((d) => {
-  //     return (
-  //       (selectedStatus === "" ||
-  //         d.status.toLowerCase() === selectedStatus.toLowerCase()) &&
-  //       (selectedDate === "" ||
-  //         new Date(d.date).toLocaleDateString() ===
-  //           selectedDate.toLocaleDateString())
-  //     );
-  //   });
-  //   setData(filteredData);
-  //   setShowFilter(false);
-  // };
+  const handleFilterSubmit = () => {
+    // Apply filter logic here
+    const filteredData = mock.filter((d) => {
+      return (
+        (selectedStatus === "" ||
+          d.status.toLowerCase() === selectedStatus.toLowerCase()) &&
+        (selectedDate === "" ||
+          new Date(d.date).toLocaleDateString() ===
+            selectedDate.toLocaleDateString())
+      );
+    });
+    setData(filteredData);
+    setShowFilter(false);
+  };
 
   return (
     <>
       <Topbar2 />
+      <div className="flex ml-5 mt-4">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.8327 9.33333H23.3327L26.8327 14.0653V21H24.4585C24.318 21.9719 23.8321 22.8608 23.0897 23.5036C22.3472 24.1464 21.3981 24.5003 20.416 24.5003C19.434 24.5003 18.4848 24.1464 17.7424 23.5036C16.9999 22.8608 16.514 21.9719 16.3735 21H10.4585C10.3198 21.9733 9.8346 22.864 9.09197 23.5083C8.34935 24.1526 7.39919 24.5073 6.41602 24.5073C5.43284 24.5073 4.48268 24.1526 3.74006 23.5083C2.99743 22.864 2.51221 21.9733 2.37352 21H1.16602V6.99999C1.16602 6.69058 1.28893 6.39383 1.50772 6.17504C1.72652 5.95624 2.02326 5.83333 2.33268 5.83333H18.666C18.9754 5.83333 19.2722 5.95624 19.491 6.17504C19.7098 6.39383 19.8327 6.69058 19.8327 6.99999V9.33333ZM19.8327 11.6667V15.1667H24.4994V14.8342L22.1567 11.6667H19.8327Z" fill="black"/>
+</svg>
+        <div className="font-bold ml-2 items-center text-lg">Tracking</div>
+      </div>
       <div className="flex flex-col md:flex-row justify-between md:scale-75%">
         {/* Search */}
         <div className="flex items-stretch m-4 focus:bg-gray-900 ">
@@ -147,37 +138,25 @@ const Tracking = () => {
             placeholder="Search here..."
             className="sm:px-4 px-2 sm:py-2 py-0 rounded-l-md focus:outline-gray-900 shadow-2xl"
           />
-          <button className="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-r-md focus:outline-none">
+          <button className="bg-customPurple text-white font-bold py-2 px-4 rounded-r-md focus:outline-none">
             <ion-icon name="search-outline" className="text-white"></ion-icon>
           </button>
         </div>
 
-        {/* Add customer & filter */}
+        {/* Filter */}
         <div className="flex mr-4">
-          {/* <div
-            className="flex items-stretch m-4 focus:bg-gray-900"
-            onClick={() => {
-              navigate('AddCustomers');
-            }}
-          >
-            <button className="flex bg-gray-700 hover:bg-gray-900 text-white items-center px-4 rounded-md focus:outline-none">
-              <AiOutlinePlus className="mr-1" />Add Customers
-            </button>
-          </div> */}
-
-           {/* Filter 
            <div className="relative flex items-stretch my-4 focus:bg-gray-900">
             <button
-              className="flex bg-gray-700 hover:bg-gray-900 text-white items-center px-4 rounded-md focus:outline-none"
+              className="flex bg-customPurple text-white items-center px-4 rounded-md focus:outline-none"
               onClick={handleFilterToggle}
             >
               <ion-icon name="filter-outline" className="text-white"></ion-icon>
               Filter
             </button>
-          </div>  */}
+          </div> 
         </div>
       </div>
-       {/* Filter Dropdown 
+       {/* Filter Dropdown  */}
        {showFilter && (
         <div className="absolute mt-16 right-4 top-16 w-50 bg-white rounded-md shadow-md">
           <div className="p-2">
@@ -247,7 +226,7 @@ const Tracking = () => {
             </div>
             <div className="flex justify-center mt-4">
               <button
-                className="bg-gray-700 hover:bg-gray-900 text-white font-semibold py-2 px-4 rounded-md focus:outline-none"
+                className="bg-customPurple text-white font-semibold py-2 px-4 rounded-md focus:outline-none"
                 onClick={handleFilterSubmit}
               >
                 Apply
@@ -255,7 +234,7 @@ const Tracking = () => {
             </div>
           </div>
         </div>
-      )}   */}
+      )}  
 
 
       {/* Table */}

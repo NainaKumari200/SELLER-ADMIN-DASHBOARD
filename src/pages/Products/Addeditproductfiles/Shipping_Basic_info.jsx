@@ -35,7 +35,7 @@ const Shipping_Basic_info = () => {
         <section className="m-1 p-1 sm:w-1/3 sm:h-[6rem] sm:m-4 flex flex-col justify-around">
           <p className="font-bold text-xs">Shipping Charges</p>
           <section className="flex">
-            <section className="flex border border-gray-500 rounded-sm w-fit bg-gray-500 hover:bg-gray-700 text-[#fff] mx-1 items-center">
+            <section className="flex border p-2 border-gray-500 rounded-md w-fit bg-gray-500 hover:bg-gray-700 text-[#fff] mx-1 items-center">
               <span className="text-xs mx-1"> Shiprocket </span>
               <RxCrossCircled className="text-xs text-white " />
             </section>
@@ -103,13 +103,6 @@ const Shipping_Basic_info = () => {
             />
           </button>
         </section> */}
-        <div className="flex items-stretch ml-5 mt-2 focus:bg-gray-900">
-        <button className="flex bg-gray-700 hover:bg-gray-900 text-white items-center px-4 py-1 gap-2 focus:outline-none">
-          Add Products
-          <ion-icon name="send" className="text-white "></ion-icon>
-        </button>
-      </div>
-
       </section>
     </>
   );

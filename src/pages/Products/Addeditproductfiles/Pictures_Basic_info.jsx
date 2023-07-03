@@ -7,9 +7,8 @@ const Pictures_Basic_info = () => {
         <h2 className="font-semibold mt-2 "> Pictures</h2>
 
         <section className="flex sm:mt-4 items-center">
-         
           <input type="file" />
-          <label className=" text-md my-3 "> Upload Image</label>
+          <label className="text-md my-3 ">Upload Image</label>
         </section>
       </section>
 
@@ -30,13 +29,6 @@ const Pictures_Basic_info = () => {
           />
         </button>
       </section> */}
-      <div className="flex items-stretch  mt-3 focus:bg-gray-900">
-        <button className="flex bg-gray-700 hover:bg-gray-900 text-white items-center px-4 py-1 gap-2 focus:outline-none">
-          Add Products
-          <ion-icon name="send" className="text-white "></ion-icon>
-        </button>
-      </div>
-
     </>
   );
 };

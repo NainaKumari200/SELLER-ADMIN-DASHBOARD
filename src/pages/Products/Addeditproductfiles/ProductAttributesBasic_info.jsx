@@ -86,9 +86,9 @@ const ProductAttributesBasic_info = () => {
       </div>
 
 
-      <div className="flex items-stretch ml-0 mt-3 focus:bg-gray-900">
-        <button className="flex bg-gray-700 hover:bg-gray-900 text-white items-center px-4 py-1 gap-2 focus:outline-none">
-          Add Products
+      <div className="flex items-stretch mt-5 rounded-md cursor-pointer">
+        <button className="flex bg-customPurple rounded-full text-white items-center px-4 py-1 gap-2 focus:outline-none">
+          Add Attribute
           <ion-icon name="send" className="text-white "></ion-icon>
         </button>
       </div>

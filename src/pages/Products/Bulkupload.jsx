@@ -36,9 +36,7 @@ function BulkUpload() {
           <p className="mt-[12px] ml-[20px]">
             Download the excel format file from this link:
           </p>
-          <button className="bg-black text-white py-2 px-4 rounded-lg flex items-center space-x-2 ml-[5px]">
-           
-
+          <button className="bg-customPurple text-white px-4 rounded-lg flex items-center space-x-2 ml-[5px]">
             <AiFillFileExcel size={25}/>
             <h3 className="ml-[5px]">Excel Format</h3>
           </button>
@@ -58,7 +56,7 @@ function BulkUpload() {
         <div className="mt-[40px] "  onClick={() => {
             navigate("../products");
           }}>
-          <button className="bg-black text-white py-2 px-4 rounded-lg flex items-center space-x-2 ml-[5px]">
+          <button className="bg-customPurple text-white py-2 px-4 rounded-lg flex items-center space-x-2 ml-[5px]">
           <AiFillFileExcel size={25}/>
             <h3 className="ml-[5px]">Upload Excel File</h3>
           </button>
