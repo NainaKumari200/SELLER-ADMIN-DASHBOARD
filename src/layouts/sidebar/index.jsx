@@ -92,46 +92,38 @@ const Sidebar = () => {
             },
           ],
         },
-        {
-      name: "Orders",
-      icon: BsCartDash,
-      menus: [
-        {
-              
-          name: "Details ",
-          icon: <AiOutlineInfoCircle />,
-        },
-        
-      ],
-    },
+       
    
-    {
-      name: "Customers",
-      icon: TbReportAnalytics,
-      menus: [
-        {
-              
-          name: "Country ",
-          icon: <FaCloudUploadAlt />,
-        },
-        {
-  
-          name: "State",
-          icon: <BiCategory />,
-        },
-        {
-        
-          name: "City",
-          icon: <FaMoneyCheckAlt />,
-        },
-        {
-        
-          name: "Address Types",
-          icon: <MdRateReview />,
-        },
-      ],
-    },
+   
   ];
+  const subMenusList2 = [
+{
+  name: "Customers",
+  icon: TbReportAnalytics,
+  menus: [
+    {
+          
+      name: "Country ",
+      icon: <FaCloudUploadAlt />,
+    },
+    {
+
+      name: "State",
+      icon: <BiCategory />,
+    },
+    {
+    
+      name: "City",
+      icon: <FaMoneyCheckAlt />,
+    },
+    {
+    
+      name: "Address Types",
+      icon: <MdRateReview />,
+    },
+  ],
+},
+];
 
   return (
     <div>
@@ -168,15 +160,25 @@ const Sidebar = () => {
                 Dashboard
               </NavLink>
             </li>
-            {/* <li>
+             
+              {(open || isTabletMid) && (
+                <div>
+                {subMenusList?.map((menu,index) => (
+                    <div  className="flex flex-col gap-1">
+                      <SubMenu data={menu} key={index} />
+                    </div>
+                  ))}
+                </div>
+              )}
+              <li>
               <NavLink to={"/orders"} className="link text-base hover:text-gray-100">
                 <BsCartDash size={23} className="min-w-max" />
                 Orders
                 </NavLink>
-              </li> */}
+              </li> 
               {(open || isTabletMid) && (
                 <div>
-                {subMenusList?.map((menu,index) => (
+                {subMenusList2?.map((menu,index) => (
                     <div  className="flex flex-col gap-1">
                       <SubMenu data={menu} key={index} />
                     </div>

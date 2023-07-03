@@ -69,7 +69,7 @@ const AllBasicInfoPage = () => {
 
   return (
     <>
-      <section>
+      <section >
         <section>
           <Topbar2 />
         </section>
@@ -138,6 +138,9 @@ const AllBasicInfoPage = () => {
                 <MdPayment />
                 <p className="text-sm ">Payment Details</p>
               </button>
+            </li>
+            <li className="w-fit border-b-2">
+              
             </li>
           </ul>
 

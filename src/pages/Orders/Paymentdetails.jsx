@@ -4,7 +4,10 @@ import Paymenttable from './Paymenttable'
 const Paymentdetails = () => {
   return (
     <>
+    
+
       <Paymenttable/>
+      
     </>
   )
 }
