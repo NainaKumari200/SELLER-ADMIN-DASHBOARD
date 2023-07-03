@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Topbar2 from "../../layouts/Topbar2";
-import { HiTrash, HiPencil } from "react-icons/hi";
+import {HiEye, HiTrash, HiPencil } from "react-icons/hi";
 import {
   MdOutlineKeyboardArrowUp,
   MdOutlineKeyboardArrowDown,
@@ -12,8 +12,14 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import mock from "../../dummy_data2.json";
 
+
+
 // Function to style the order status
 function getOrderStatus(status) {
+
+  const navigate = useNavigate();
+
+
   switch (status) {
     case "Active":
       return (
@@ -126,7 +132,7 @@ const Orders = () => {
       <Topbar2 />
 
 
-      <div className="flex flex-col md:flex-row justify-between md:scale-75%">
+      <div className="flex flex-col md:flex-row justify-between md:scale-75% ">
         {/* Search */}
         <div className="flex items-stretch m-4 focus:bg-gray-900 ">
           <input
@@ -319,6 +325,13 @@ const Orders = () => {
                       <td>{getOrderStatus(d.status)}</td>
                       <td>
                         <div className="flex justify-center">
+                          <HiEye name="eye-fill"
+                             className="mr-2 hover:cursor-pointer" 
+                             onClick={() => {
+                              navigate('Details');
+                             }}
+                             >
+                             </HiEye>
                           <HiPencil
                             className="fill-gray-800 mr-2 hover:cursor-pointer"
                             onClick={() => {

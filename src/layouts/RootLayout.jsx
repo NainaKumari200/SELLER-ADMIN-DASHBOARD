@@ -8,7 +8,7 @@ function RootLayout({ children }) {
   return (
     <div className="flex ">
       {!isLoginPage && <Sidebar />}
-      <main className="max-w-[3400px] flex-1 ">{children}</main>
+      <main className="max-w-[3400px]  flex-1 ">{children}</main>
     </div>
   );
 }
