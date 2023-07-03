@@ -1,14 +1,33 @@
 import React, { useState } from 'react';
-import Topbar2 from "../../layouts/Topbar2";
 import {HiTrash,HiPencil} from 'react-icons/hi';
-import {MdOutlineKeyboardArrowUp,MdOutlineKeyboardArrowDown} from 'react-icons/md';
-import {AiOutlinePlus} from 'react-icons/ai';
 import {FaSort} from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
 import mock from '../../dummy_data2.json';
 
+
+// Function to style the order status
+function getOrderStatus(status) {
+  switch (status) {
+    case "Active":
+      return (
+        <span className="flex justify-center items-center capitalize py-1 px-2 rounded-full text-xs font-bold text-green-500 bg-green-100 border border-green-500">
+          {status}
+        </span>
+      );
+    case "Deactivated":
+      return (
+        <span className="flex justify-center items-center capitalize py-1 px-2 rounded-full text-xs font-bold text-red-500 bg-red-100 border border-red-500">
+          {status}
+        </span>
+      );
+    default:
+      return (
+        <span className="flex justify-center items-center capitalize py-1 px-2 rounded-md text-xs font-bold text-gray-600 bg-gray-100">
+          {status.replaceAll("_", " ").toLowerCase()}
+        </span>
+      );
+  }
+}
 
 //Function for alternate gray and white
 function alternate(index) {
@@ -52,44 +71,6 @@ const Commisiontable = () => {
     setCurrentPage(pageNumber);
   };
 
-  const [showFilter, setShowFilter] = useState(false);
-  const [selectedStatus, setSelectedStatus] = useState('');
-  const [selectedDate, setSelectedDate] = useState('');
-  const [showCalendar, setShowCalendar] = useState(false);
-  const [showStatus, setShowStatus] = useState(false);
-  
-  const handleCalendarToggle = () => {
-    setShowCalendar(!showCalendar);
-  };
-
-  const handleStatusToggle = () => {
-    setShowStatus(!showStatus);
-  };
-  
-  const handleFilterToggle = () => {
-    setShowFilter(!showFilter);
-  };
-
-  const handleStatusChange = (status) => {
-    setSelectedStatus(status);
-  };
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
-  const handleFilterSubmit = () => {
-    // Apply filter logic here
-    const filteredData = mock.filter((d) => {
-      return (
-        (selectedStatus===""||d.status.toLowerCase() === selectedStatus.toLowerCase()) &&
-        (selectedDate===""||new Date(d.date).toLocaleDateString() === selectedDate.toLocaleDateString())
-      );
-    });
-    setData(filteredData);
-    setShowFilter(false);
-  };
-
   return (
     <>
       
@@ -104,37 +85,49 @@ const Commisiontable = () => {
               <table className="w-full">
                 <thead>
                   <tr className="font-bold bg-white border-b-2">
-                    <th className='merchant-table'>S. No.</th>
-                    <th className='merchant-table'>
+                    <th>S. No.</th>
+                    <th className='mytable'>
                     <div className="flex items-center">
                     Product ID
                     <FaSort className="ml-1 hover:cursor-pointer" onClick={() => { sorting("product_id") }} />
                     </div>
                     </th>
-                    <th className='merchant-table'>
+                    <th>
                      <div className="flex items-center">
         Product name
         <FaSort className="ml-1 hover:cursor-pointer" onClick={() => { sorting("product_name") }} />
       </div>
                     </th>
-                    {/* <th className='merchant-table'>E-Mail</th> */}
-                    <th className='merchant-table'>Commision</th>
-                    <th className='merchant-table'>Dated From</th>
-                    <th className='merchant-table'>Dated To</th>
-                    <th className='merchant-table'>Action</th>
+                    {/* <th>E-Mail</th> */}
+                    <th>Commision</th>
+                    <th>Dated From</th>
+                    <th>Dated To</th>
+                    <th className="w-24">
+                      <div className="flex items-center justify-between">
+                        Status
+                        <FaSort
+                          className="hover:cursor-pointer"
+                          onClick={() => {
+                            sorting("status");
+                          }}
+                        />
+                      </div>
+                    </th> 
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   {currentData.map((d,index) => (
                     <tr key={startIndex+d.id} className={alternate(startIndex+index+1)}>
-                      <td className='merchant-table'>{startIndex+index+1}</td>
-                      <td className='merchant-table'>{d.product_id}</td>
-                      <td className='merchant-table'>{d.product_name}</td>
-                      {/* <td className='merchant-table'>{d.email}</td> */}
-                      <td className='merchant-table'>{d.commission}</td>
-                      <td className='merchant-table'>{new Date(d.dated_from).toLocaleDateString()}</td>
-                      <td className='merchant-table'>{new Date(d.dated_to).toLocaleDateString()}</td>
-                      <td className='merchant-table'>
+                      <td className='mytable'>{startIndex+index+1}</td>
+                      <td>{d.product_id}</td>
+                      <td>{d.product_name}</td>
+                      {/* <td>{d.email}</td> */}
+                      <td>{d.commission}</td>
+                      <td>{new Date(d.dated_from).toLocaleDateString()}</td>
+                      <td>{new Date(d.dated_to).toLocaleDateString()}</td>
+                      <td>{getOrderStatus(d.status)}</td>
+                      <td>
                         <div className="flex">
                           <HiPencil className="fill-gray-800 mr-2 hover:cursor-pointer"  />
                           <HiTrash className="fill-red-500 hover:cursor-pointer" />

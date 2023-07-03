@@ -150,7 +150,8 @@ const Offers = () => {
             </button>
           </div> 
 
-           {/* Filter  */}
+           {/* Filter */}
+        <div className="flex">
            <div className="relative flex items-stretch my-4 focus:bg-gray-900">
             <button
               className="flex bg-customPurple text-white items-center px-4 rounded-md focus:outline-none"
@@ -161,16 +162,17 @@ const Offers = () => {
             </button>
           </div> 
         </div>
+        </div>
       </div>
        {/* Filter Dropdown  */}
        {showFilter && (
-        <div className="absolute mt-16 right-4 top-16 w-50 bg-white rounded-md shadow-md">
-          <div className="p-2">
+        <div className="absolute mt-16 right-4 top-16 w-60 bg-white rounded-md shadow-md">
+          <div>
             <div
-              className="flex items-center justify-between"
+              className="flex items-center justify-between p-1"
               onClick={handleStatusToggle}
             >
-              <label className="p-2 text-gray-700 font-normal">
+              <label className="p-2 text-gray-800 font-normal">
                 Select Status
               </label>
               {showStatus ? (
@@ -179,42 +181,37 @@ const Offers = () => {
                 <MdOutlineKeyboardArrowDown />
               )}
             </div>
+            <hr className="h-px bg-black"/>
             {showStatus && (
-              <div className="form-radio text-gray-700">
-                <div className="flex items-center justify-between text-sm">
+              <div className="text-gray-700 mb-2">
+                <div className="flex my-2 items-center pt-1 pb-2 px-1 justify-between border-b border-black text-sm">
                   <label htmlFor="active" className="ml-2">
                     Active
                   </label>
-                  <input
-                    type="radio"
-                    id="active"
+                  <input className="rounded-full text-black" type="checkbox" id="active"
                     name="status"
                     value="active"
                     checked={selectedStatus === "active"}
-                    onChange={() => handleStatusChange("active")}
-                  />
+                    onChange={() => handleStatusChange("active")}/>
                 </div>
-                <u></u>
-                <div className="flex items-center justify-between text-sm">
+                <div className="flex my-2 items-center pt-1 pb-2 px-1 justify-between border-b border-black text-sm">
                   <label htmlFor="deactive" className="ml-2">
                     Deactive
                   </label>
-                  <input
-                    type="radio"
+                  <input className="rounded-full text-black" type="checkbox"
                     id="deactive"
                     name="status"
                     value="deactivated"
                     checked={selectedStatus === "deactivated"}
-                    onChange={() => handleStatusChange("deactivated")}
-                  />
+                    onChange={() => handleStatusChange("deactivated")}/>
                 </div>
               </div>
             )}
             <div
-              className="flex items-center justify-between"
+              className="flex items-center justify-between pt-1 pb-2 px-1"
               onClick={handleCalendarToggle}
             >
-              <label className="p-2 text-gray-700 font-normal hover:cursor-pointer">
+              <label className="px-2 text-gray-800 font-normal hover:cursor-pointer">
                 By Date
               </label>
               {showCalendar ? (
@@ -223,14 +220,14 @@ const Offers = () => {
                 <MdOutlineKeyboardArrowDown />
               )}
             </div>
-            <div className="mt-4">
+            <div>
               {showCalendar && (
                 <div className="relative">
                   <Calendar onChange={handleDateChange} value={selectedDate} />
                 </div>
               )}
             </div>
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-center mb-2">
               <button
                 className="bg-customPurple text-white font-semibold py-2 px-4 rounded-md focus:outline-none"
                 onClick={handleFilterSubmit}
@@ -251,23 +248,23 @@ const Offers = () => {
               <table className="w-full">
                 <thead>
                   <tr className="bg-white border-b-2">
-                    <th>S. No.</th>
-                    <th className="pl-10">
+                    <th className="mytable">S. No.</th>
+                    <th>
                       <div className="flex items-center">
                         Offer Id
                         <FaSort
-                          className="ml-1 hover:cursor-pointer"
+                          className="ml-2 hover:cursor-pointer"
                           onClick={() => {
                             sorting("offer_id");
                           }}
                         />
                       </div>
                     </th>
-                    <th className="pl-10">
+                    <th>
                       <div className="flex items-center">
                         Offer(%age)
                         <FaSort
-                          className="ml-1 hover:cursor-pointer"
+                          className="ml-2 hover:cursor-pointer"
                           onClick={() => {
                             sorting("offer_p");
                           }}
@@ -275,19 +272,19 @@ const Offers = () => {
                       </div>
                     </th>
 
-                    <th className="pr-6">
+                    <th className="w-1/3">
                     <div className="flex items-center">
                         Product Name
                         <FaSort
-                          className="ml-1 hover:cursor-pointer"
+                          className="ml-2 hover:cursor-pointer"
                           onClick={() => {
                             sorting("product_name");
                           }}
                         />
                       </div>
                     </th>
-                    <th className="pr-9 ">Rating</th>
-                    <th className="pr-9 ">Total Reviews</th>
+                    <th>Rating</th>
+                    <th>Total Reviews</th>
                     {/* <th className="pr-9 ">Currently</th> */}
                     {/* <th className="pr-9">
                       <div className="flex items-center">
@@ -320,14 +317,14 @@ const Offers = () => {
                       key={startIndex + d.id}
                       className={alternate(startIndex + index+1)}
                     >
-                      <td className="pl-4">{startIndex + index + 1}</td>
+                      <td className="mytable pl-4">{startIndex + index + 1}</td>
 
-                      <td className="pl-10">{d.offer_id}</td>
+                      <td>{d.offer_id}</td>
 
-                      <td className="pl-10">{d.offer_p}</td>
-                      <td className="pl-8">{d.product_name}</td>
-                      <td className="pl-10">{d.rating}</td>
-                      <td className="pl-14">{d.total_reviews}</td>
+                      <td>{d.offer_p}</td>
+                      <td>{d.product_name}</td>
+                      <td className="pl-4">{d.rating}</td>
+                      <td className="pl-6">{d.total_reviews}</td>
                       {/* <td className="pl-4">{d.currently}</td> */}
                       {/* <td>{new Date(d.date).toLocaleDateString()}</td> */}
                       {/* <td>{getOrderStatus(d.status)}</td> */}

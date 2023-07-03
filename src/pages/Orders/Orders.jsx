@@ -130,8 +130,6 @@ const Orders = () => {
   return (
     <>
       <Topbar2 />
-
-
       <div className="flex flex-col md:flex-row justify-between md:scale-75% ">
         {/* Search */}
         <div className="flex items-stretch m-4 focus:bg-gray-900 ">
@@ -144,22 +142,9 @@ const Orders = () => {
             <ion-icon name="search-outline" className="text-white"></ion-icon>
           </button>
         </div>
-
-        {/* Add customer & filter */}
-        <div className="flex mr-4">
-          {/* <div
-            className="flex items-stretch m-4 focus:bg-gray-900"
-            onClick={() => {
-              navigate('AddCustomers');
-            }}
-          >
-            <button className="flex bg-gray-700 hover:bg-gray-900 text-white items-center px-4 rounded-md focus:outline-none">
-              <AiOutlinePlus className="mr-1" />Add Customers
-            </button>
-          </div> */}
-
           {/* Filter */}
-          <div className="relative flex items-stretch my-4 focus:bg-gray-900">
+        <div className="flex mr-4">
+           <div className="relative flex items-stretch my-4 focus:bg-gray-900">
             <button
               className="flex bg-customPurple text-white items-center px-4 rounded-md focus:outline-none"
               onClick={handleFilterToggle}
@@ -167,18 +152,18 @@ const Orders = () => {
               <ion-icon name="filter-outline" className="text-white"></ion-icon>
               Filter
             </button>
-          </div>
+          </div> 
         </div>
       </div>
-      {/* Filter Dropdown */}
-      {showFilter && (
-        <div className="absolute mt-16 right-4 top-16 w-50 bg-white rounded-md shadow-md">
-          <div className="p-2">
+       {/* Filter Dropdown  */}
+       {showFilter && (
+        <div className="absolute mt-28 right-4 top-16 w-60 bg-white rounded-md shadow-md">
+          <div>
             <div
-              className="flex items-center justify-between"
+              className="flex items-center justify-between p-1"
               onClick={handleStatusToggle}
             >
-              <label className="p-2 text-gray-700 font-normal">
+              <label className="p-2 text-gray-800 font-normal">
                 Select Status
               </label>
               {showStatus ? (
@@ -187,42 +172,37 @@ const Orders = () => {
                 <MdOutlineKeyboardArrowDown />
               )}
             </div>
+            <hr className="h-px bg-black"/>
             {showStatus && (
-              <div className="form-radio text-gray-700">
-                <div className="flex items-center justify-between text-sm">
+              <div className="text-gray-700 mb-2">
+                <div className="flex my-2 items-center pt-1 pb-2 px-1 justify-between border-b border-black text-sm">
                   <label htmlFor="active" className="ml-2">
                     Active
                   </label>
-                  <input
-                    type="radio"
-                    id="active"
+                  <input className="rounded-full text-black" type="checkbox" id="active"
                     name="status"
                     value="active"
                     checked={selectedStatus === "active"}
-                    onChange={() => handleStatusChange("active")}
-                  />
+                    onChange={() => handleStatusChange("active")}/>
                 </div>
-                <u></u>
-                <div className="flex items-center justify-between text-sm">
+                <div className="flex my-2 items-center pt-1 pb-2 px-1 justify-between border-b border-black text-sm">
                   <label htmlFor="deactive" className="ml-2">
                     Deactive
                   </label>
-                  <input
-                    type="radio"
+                  <input className="rounded-full text-black" type="checkbox"
                     id="deactive"
                     name="status"
                     value="deactivated"
                     checked={selectedStatus === "deactivated"}
-                    onChange={() => handleStatusChange("deactivated")}
-                  />
+                    onChange={() => handleStatusChange("deactivated")}/>
                 </div>
               </div>
             )}
             <div
-              className="flex items-center justify-between"
+              className="flex items-center justify-between pt-1 pb-2 px-1"
               onClick={handleCalendarToggle}
             >
-              <label className="p-2 text-gray-700 font-normal hover:cursor-pointer">
+              <label className="px-2 text-gray-800 font-normal hover:cursor-pointer">
                 By Date
               </label>
               {showCalendar ? (
@@ -231,14 +211,14 @@ const Orders = () => {
                 <MdOutlineKeyboardArrowDown />
               )}
             </div>
-            <div className="mt-4">
+            <div>
               {showCalendar && (
                 <div className="relative">
                   <Calendar onChange={handleDateChange} value={selectedDate} />
                 </div>
               )}
             </div>
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-center mb-2">
               <button
                 className="bg-customPurple text-white font-semibold py-2 px-4 rounded-md focus:outline-none"
                 onClick={handleFilterSubmit}
@@ -248,7 +228,8 @@ const Orders = () => {
             </div>
           </div>
         </div>
-      )}
+      )}  
+
       {/* Table */}
       <div className="rounded-lg shadow overflow-x-auto">
         <div className="flex flex-row gap-4 w-full">
@@ -257,23 +238,23 @@ const Orders = () => {
               <table className="w-full">
                 <thead>
                   <tr className="bg-white border-b-2">
-                    <th>S. No.</th>
-                    <th className="pl-10">
+                    <th className="mytable">S. No.</th>
+                    <th>
                       <div className="flex items-center">
                         Order No.
                         <FaSort
-                          className="ml-1 hover:cursor-pointer"
+                          className="ml-2 hover:cursor-pointer"
                           onClick={() => {
                             sorting("order_no");
                           }}
                         />
                       </div>
                     </th>
-                    <th className="pl-10">
+                    <th>
                       <div className="flex items-center">
                         Customer Name
                         <FaSort
-                          className="ml-1 hover:cursor-pointer"
+                          className="ml-2 hover:cursor-pointer"
                           onClick={() => {
                             sorting("customer_name");
                           }}
@@ -281,21 +262,21 @@ const Orders = () => {
                       </div>
                     </th>
 
-                    <th className="pr-9">E-Mail</th>
-                    <th className="pr-9">
-                      <div className="flex items-center">
+                    <th>E-Mail</th>
+                    <th>
+                      <div className="flex items-center justify-between">
                         Date
                         <FaSort
-                          className="ml-1 hover:cursor-pointer"
+                          className="hover:cursor-pointer"
                           onClick={() => {
                             sorting("date");
                           }}
                         />
                       </div>
                     </th>
-                    <th className="pr-9 ">Amount</th>
-                    <th>
-                      <div className="flex items-center">
+                    <th>Amount</th>
+                    <th className="w-24">
+                      <div className="flex items-center justify-between">
                         Status
                         <FaSort
                           className="hover:cursor-pointer"
@@ -314,14 +295,14 @@ const Orders = () => {
                       key={startIndex + d.id}
                       className={alternate(startIndex + index + 1)}
                     >
-                      <td className="pl-4">{startIndex + index + 1}</td>
+                      <td className="mytable">{startIndex + index + 1}</td>
 
-                      <td className="pl-10">{d.order_no}</td>
+                      <td>{d.order_no}</td>
 
-                      <td className="pl-10">{d.customer_name}</td>
-                      <td className="pl-8">{d.email}</td>
+                      <td>{d.customer_name}</td>
+                      <td>{d.email}</td>
                       <td>{new Date(d.date).toLocaleDateString()}</td>
-                      <td className="pl-4">{d.amount}</td>
+                      <td>{d.amount}</td>
                       <td>{getOrderStatus(d.status)}</td>
                       <td>
                         <div className="flex justify-center">

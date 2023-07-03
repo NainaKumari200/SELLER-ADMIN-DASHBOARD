@@ -1,48 +1,7 @@
-// import React from 'react'
-
-// const Products = () => {
-//   return (
-//     <div>Products</div>
-//   )
-// }
-
-// export default Products
-
-
-
-
-// import React from 'react'
-
-// const Offers = () => {
-//   return (
-//     <div>Offers</div>
-//   )
-// }
-
-// export default Offers
-
-
-
-
-
-
-
-
-
-
-
 import React, { useState } from "react";
-import Topbar2 from "../../layouts/Topbar2";
 import { HiTrash, HiPencil } from "react-icons/hi";
-import {
-  MdOutlineKeyboardArrowUp,
-  MdOutlineKeyboardArrowDown,
-} from "react-icons/md";
-import { AiOutlinePlus } from "react-icons/ai";
 import { FaSort } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
 import mock from "../../dummy_data2.json";
 
 // Function to style the order status
@@ -113,47 +72,6 @@ const Categorytable = () => {
     setCurrentPage(pageNumber);
   };
 
-  const [showFilter, setShowFilter] = useState(false);
-  const [selectedStatus, setSelectedStatus] = useState("");
-  const [selectedDate, setSelectedDate] = useState("");
-  const [showCalendar, setShowCalendar] = useState(false);
-  const [showStatus, setShowStatus] = useState(false);
-
-  const handleCalendarToggle = () => {
-    setShowCalendar(!showCalendar);
-  };
-
-  const handleStatusToggle = () => {
-    setShowStatus(!showStatus);
-  };
-
-  const handleFilterToggle = () => {
-    setShowFilter(!showFilter);
-  };
-
-  const handleStatusChange = (status) => {
-    setSelectedStatus(status);
-  };
-
-  // const handleDateChange = (date) => {
-  //   setSelectedDate(date);
-  // };
-
-  const handleFilterSubmit = () => {
-    // Apply filter logic here
-    const filteredData = mock.filter((d) => {
-      return (
-        (selectedStatus === "" ||
-          d.status.toLowerCase() === selectedStatus.toLowerCase()) &&
-        (selectedDate === "" ||
-          new Date(d.date).toLocaleDateString() ===
-            selectedDate.toLocaleDateString())
-      );
-    });
-    setData(filteredData);
-    setShowFilter(false);
-  };
-
   return (
     <>
      
@@ -167,8 +85,8 @@ const Categorytable = () => {
               <table className="w-full">
                 <thead>
                   <tr className="bg-white border-b-2">
-                    <th>S. No.</th>
-                    <th className="pl-10">
+                    <th className="mytable">S. No.</th>
+                    <th>
                       <div className="flex items-center">
                         Category Id
                         <FaSort
@@ -179,8 +97,9 @@ const Categorytable = () => {
                         />
                       </div>
                     </th>
+                    <th></th>
                     {/* <th className="pr-9 ">Product</th> */}
-                    <th className="pl-10">
+                    <th className="w-1/2">
                       <div className="flex items-center">
                         Product Name
                         <FaSort
@@ -217,8 +136,8 @@ const Categorytable = () => {
                         />
                       </div>
                     </th> */}
-                     <th>
-                      <div className="flex items-center">
+                     <th className="w-24">
+                      <div className="flex items-center justify-between">
                         Status
                         <FaSort
                           className="hover:cursor-pointer"
@@ -237,9 +156,9 @@ const Categorytable = () => {
                       key={startIndex + d.id}
                       className={alternate(startIndex + index+1)}
                     >
-                      <td className="pl-4">{startIndex + index + 1}</td>
+                      <td className="mytable">{startIndex + index + 1}</td>
 
-                      <td className="pl-10">{d.category_id}</td>
+                      <td>{d.category_id}</td>
                       {/* <td className="pl-2 h-2 w-2">
                       <img
                         src={d.product}
@@ -247,14 +166,21 @@ const Categorytable = () => {
                         className="w-8 h-8 rounded-full"
                       />
                       </td> */}
-
-                      <td className="pl-10">{d.product_name}</td>
+                      <td>
+                      <img
+                          src={d.product}
+                          alt=""
+                          className="w-8 h-8 rounded-full mt-1 mr-2"
+                        />
+                      </td>
+                      <td>
+                        {d.product_name}</td>
                       {/* <td className="pl-8">{d.product_name}</td> */}
                       {/* <td className="pl-10">{d.rating}</td> */}
                       {/* <td className="pl-14">{d.total_reviews}</td> */}
                       {/* <td className="pl-4">{d.currently}</td> */}
                       {/* <td>{new Date(d.date).toLocaleDateString()}</td> */}
-                      <td className="">{getOrderStatus(d.status)}</td>
+                      <td>{getOrderStatus(d.status)}</td>
                       <td>
                         <div className="flex justify-center">
                           <HiPencil

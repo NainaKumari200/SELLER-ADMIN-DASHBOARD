@@ -61,7 +61,7 @@ const Commission = () => {
         </button>
       </div>
 
-      <div className="ml-5 mt-2">
+      <div className="mt-4">
         <Commissiontable />
       </div>
     </>
