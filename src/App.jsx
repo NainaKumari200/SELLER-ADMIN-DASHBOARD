@@ -20,7 +20,7 @@ import Tracking from "./pages/Tracking/Tracking";
 import Country from "./pages/Customers/Country";
 import State from "./pages/Customers/State";
 import City from "./pages/Customers/City";
-import Address from "./pages/Customers/Address";
+import Address from "./pages/Customers/Addresstypes";
 import Details from "./pages/Orders/Details";
 import Addnewoffer from "./pages/Offers/Addnewoffer";
 import Basicinfo from "./pages/Orders/Basicinfo";
@@ -31,6 +31,7 @@ import Addproducts from "./pages/Products/Addproducts";
 import Reviewsdetails from "./pages/Products/Reviewsdetails";
 import Editproducts from "./pages/Products/Editproducts";
 import Editcategories from "./pages/Products/Editcategories";
+import AddressTypes from "./pages/Customers/Addresstypes";
 // import Basic_info from "./pages/Products/Addeditproductfiles/Basic_info";
 
 // import Shipping_Basic_info from "./pages/Products/Addeditproductfiles/Shipping_Basic_info";
@@ -60,7 +61,7 @@ const App = () => {
         <Route path="/customers/country" element={<Country />} />
         <Route path="/customers/state" element={<State />} />
         <Route path="/customers/city" element={<City />} />
-        <Route path="/customers/address" element={<Address />} />
+        <Route path="/customers/address types" element={<AddressTypes />} />
         <Route path="/tracking" element={<Tracking />} />
         <Route path="/offers" element={<Offers />} />
         <Route path="/offers/addnewoffer" element={<Addnewoffer />} />
