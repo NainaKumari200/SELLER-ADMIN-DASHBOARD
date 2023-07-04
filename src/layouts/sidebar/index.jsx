@@ -126,7 +126,7 @@ const Sidebar = () => {
 ];
 
   return (
-    <div>
+    <div className="">
       <div
         onClick={() => setOpen(false)}
         className={`md:hidden fixed inset-0 max-h-screen z-[998] bg-customDark/50 ${
@@ -164,7 +164,7 @@ const Sidebar = () => {
               {(open || isTabletMid) && (
                 <div>
                 {subMenusList?.map((menu,index) => (
-                    <div  className="flex flex-col gap-1">
+                    <div  className="flex flex-col">
                       <SubMenu data={menu} key={index} />
                     </div>
                   ))}
@@ -179,7 +179,7 @@ const Sidebar = () => {
               {(open || isTabletMid) && (
                 <div>
                 {subMenusList2?.map((menu,index) => (
-                    <div  className="flex flex-col gap-1">
+                    <div  className="flex flex-col">
                       <SubMenu data={menu} key={index} />
                     </div>
                   ))}
