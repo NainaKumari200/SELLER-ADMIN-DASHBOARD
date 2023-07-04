@@ -1,15 +1,3 @@
-// import React from 'react'
-
-// const Address = () => {
-//   return (
-//     <div>Address</div>
-//   )
-// }
-
-// export default Address
-
-
-
 import React, { useState } from "react";
 import Topbar2 from "../../layouts/Topbar2";
 import { HiTrash, HiPencil } from "react-icons/hi";
@@ -56,7 +44,7 @@ function alternate(index) {
 }
 
 // Dummy Values
-const AddressTypes = () => {
+function AddressTypes() {
   const navigate = useNavigate();
   const [data, setData] = useState(mock);
   const [order, setOrder] = useState("ASC");
@@ -163,7 +151,8 @@ const AddressTypes = () => {
           </div> */}
 
           {/* Filter */}
-          <div className="relative flex items-stretch my-4 focus:bg-gray-900">
+        <div className="flex">
+           <div className="relative flex items-stretch my-4 focus:bg-gray-900">
             <button
               className="flex bg-customPurple text-white items-center px-4 rounded-md focus:outline-none"
               onClick={handleFilterToggle}
@@ -171,18 +160,19 @@ const AddressTypes = () => {
               <ion-icon name="filter-outline" className="text-white"></ion-icon>
               Filter
             </button>
-          </div>
+          </div> 
+        </div>
         </div>
       </div>
-      {/* Filter Dropdown */}
-      {showFilter && (
-        <div className="absolute mt-16 right-4 top-16 w-50 bg-white rounded-md shadow-md">
-          <div className="p-2">
+       {/* Filter Dropdown  */}
+       {showFilter && (
+        <div className="absolute mt-16 right-4 top-16 w-60 bg-white rounded-md shadow-md">
+          <div>
             <div
-              className="flex items-center justify-between"
+              className="flex items-center justify-between p-1"
               onClick={handleStatusToggle}
             >
-              <label className="p-2 text-gray-700 font-normal">
+              <label className="p-2 text-gray-800 font-normal">
                 Select Status
               </label>
               {showStatus ? (
@@ -191,42 +181,37 @@ const AddressTypes = () => {
                 <MdOutlineKeyboardArrowDown />
               )}
             </div>
+            <hr className="h-px bg-black"/>
             {showStatus && (
-              <div className="form-radio text-gray-700">
-                <div className="flex items-center justify-between text-sm">
+              <div className="text-gray-700 mb-2">
+                <div className="flex my-2 items-center pt-1 pb-2 px-1 justify-between border-b border-black text-sm">
                   <label htmlFor="active" className="ml-2">
                     Active
                   </label>
-                  <input
-                    type="radio"
-                    id="active"
+                  <input className="rounded-full text-black" type="checkbox" id="active"
                     name="status"
                     value="active"
                     checked={selectedStatus === "active"}
-                    onChange={() => handleStatusChange("active")}
-                  />
+                    onChange={() => handleStatusChange("active")}/>
                 </div>
-                <u></u>
-                <div className="flex items-center justify-between text-sm">
+                <div className="flex my-2 items-center pt-1 pb-2 px-1 justify-between border-b border-black text-sm">
                   <label htmlFor="deactive" className="ml-2">
                     Deactive
                   </label>
-                  <input
-                    type="radio"
+                  <input className="rounded-full text-black" type="checkbox"
                     id="deactive"
                     name="status"
                     value="deactivated"
                     checked={selectedStatus === "deactivated"}
-                    onChange={() => handleStatusChange("deactivated")}
-                  />
+                    onChange={() => handleStatusChange("deactivated")}/>
                 </div>
               </div>
             )}
             <div
-              className="flex items-center justify-between"
+              className="flex items-center justify-between pt-1 pb-2 px-1"
               onClick={handleCalendarToggle}
             >
-              <label className="p-2 text-gray-700 font-normal hover:cursor-pointer">
+              <label className="px-2 text-gray-800 font-normal hover:cursor-pointer">
                 By Date
               </label>
               {showCalendar ? (
@@ -235,14 +220,14 @@ const AddressTypes = () => {
                 <MdOutlineKeyboardArrowDown />
               )}
             </div>
-            <div className="mt-4">
+            <div>
               {showCalendar && (
                 <div className="relative">
                   <Calendar onChange={handleDateChange} value={selectedDate} />
                 </div>
               )}
             </div>
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-center mb-2">
               <button
                 className="bg-customPurple text-white font-semibold py-2 px-4 rounded-md focus:outline-none"
                 onClick={handleFilterSubmit}
@@ -261,10 +246,10 @@ const AddressTypes = () => {
               <table className="w-full">
                 <thead>
                   <tr className="bg-white border-b-2">
-                    <th>S. No.</th>
-                    <th className="pl-10">
-                      <div className="flex items-center">
-                        Address Id
+                    <th className="mytable">S. No.</th>
+                    <th>
+                      <div className="flex items-center justify-between pr-4">
+                        Address Type ID
                         <FaSort
                           className="ml-1 hover:cursor-pointer"
                           onClick={() => {
@@ -273,9 +258,9 @@ const AddressTypes = () => {
                         />
                       </div>
                     </th>
-                    <th className="pl-10">
-                      <div className="flex items-center">
-                        Address Name
+                    <th>
+                      <div className="flex items-center  justify-between">
+                        Address Type Name
                         <FaSort
                           className="ml-1 hover:cursor-pointer"
                           onClick={() => {
@@ -285,21 +270,20 @@ const AddressTypes = () => {
                       </div>
                     </th>
 
-                    <th className="pr-9">Display Seq. No.</th>
-                    {/* <th className="pr-9 ">Country Name</th> */}
-                    <th className="pr-9">
-                      <div className="flex items-center">
+                    <th>Display Seq. No.</th>
+                    <th>
+                      <div className="flex items-center justify-between pr-4">
                         Date
                         <FaSort
-                          className="ml-1 hover:cursor-pointer"
+                          className="hover:cursor-pointer"
                           onClick={() => {
                             sorting("date");
                           }}
                         />
                       </div>
                     </th>
-                    <th>
-                      <div className="flex items-center">
+                    <th  className="w-24">
+                      <div className="flex items-center justify-between">
                         Status
                         <FaSort
                           className="hover:cursor-pointer"
@@ -318,12 +302,12 @@ const AddressTypes = () => {
                       key={startIndex + d.id}
                       className={alternate(startIndex + index+1)}
                     >
-                      <td className="pl-4">{startIndex + index + 1}</td>
+                      <td className="mytable">{startIndex + index + 1}</td>
 
-                      <td className="pl-10">{d.addresstype_id}</td>
+                      <td>{d.addresstype_id}</td>
 
-                      <td className="pl-10">{d.addresstype_name}</td>
-                      <td className="pl-14">{d.id}</td>
+                      <td>{d.addresstype_name}</td>
+                      <td className="pl-7">{d.id}</td>
                       {/* <td className="pl-4">{d.country_name}</td> */}
                       <td>{new Date(d.date).toLocaleDateString()}</td>
                       <td>{getOrderStatus(d.status)}</td>

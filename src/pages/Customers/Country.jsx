@@ -160,7 +160,7 @@ const Country = () => {
           </div> */}
 
           {/* Filter */}
-        <div className="flex mr-4">
+        <div className="flex">
            <div className="relative flex items-stretch my-4 focus:bg-gray-900">
             <button
               className="flex bg-customPurple text-white items-center px-4 rounded-md focus:outline-none"

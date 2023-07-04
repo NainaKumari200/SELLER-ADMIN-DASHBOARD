@@ -118,7 +118,7 @@ const Sidebar = () => {
     },
     {
     
-      name: "Address Types",
+      name: "Address Types ",
       icon: <MdRateReview />,
     },
   ],

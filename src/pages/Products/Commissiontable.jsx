@@ -120,14 +120,14 @@ const Commisiontable = () => {
                   {currentData.map((d,index) => (
                     <tr key={startIndex+d.id} className={alternate(startIndex+index+1)}>
                       <td className='mytable'>{startIndex+index+1}</td>
-                      <td>{d.product_id}</td>
+                      <td className='pl-2'>{d.product_id}</td>
                       <td>{d.product_name}</td>
                       {/* <td>{d.email}</td> */}
-                      <td>{d.commission}</td>
-                      <td>{new Date(d.dated_from).toLocaleDateString()}</td>
-                      <td>{new Date(d.dated_to).toLocaleDateString()}</td>
+                      <td className='pl-5'>{d.commission}</td>
+                      <td className='pl-5'>{new Date(d.dated_from).toLocaleDateString()}</td>
+                      <td className='pl-12'>{new Date(d.dated_to).toLocaleDateString()}</td>
                       <td>{getOrderStatus(d.status)}</td>
-                      <td>
+                      <td className='pl-5'>
                         <div className="flex">
                           <HiPencil className="fill-gray-800 mr-2 hover:cursor-pointer"  />
                           <HiTrash className="fill-red-500 hover:cursor-pointer" />
