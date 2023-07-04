@@ -271,7 +271,6 @@ const AddressTypes = () => {
                     </th>
 
                     <th>Display Seq. No.</th>
-                    {/* <th className="pr-9 ">Country Name</th> */}
                     <th>
                       <div className="flex items-center justify-between pr-4">
                         Date
