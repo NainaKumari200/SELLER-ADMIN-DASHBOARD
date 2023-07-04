@@ -44,7 +44,7 @@ function alternate(index) {
 }
 
 // Dummy Values
-const AddressTypes = () => {
+function AddressTypes() {
   const navigate = useNavigate();
   const [data, setData] = useState(mock);
   const [order, setOrder] = useState("ASC");
@@ -249,7 +249,7 @@ const AddressTypes = () => {
                     <th className="mytable">S. No.</th>
                     <th>
                       <div className="flex items-center justify-between pr-4">
-                        Address Id
+                        Address Type ID
                         <FaSort
                           className="ml-1 hover:cursor-pointer"
                           onClick={() => {
@@ -260,7 +260,7 @@ const AddressTypes = () => {
                     </th>
                     <th>
                       <div className="flex items-center  justify-between">
-                        Address Name
+                        Address Type Name
                         <FaSort
                           className="ml-1 hover:cursor-pointer"
                           onClick={() => {
@@ -307,7 +307,7 @@ const AddressTypes = () => {
                       <td>{d.addresstype_id}</td>
 
                       <td>{d.addresstype_name}</td>
-                      <td className="pl-11">{d.id}</td>
+                      <td className="pl-7">{d.id}</td>
                       {/* <td className="pl-4">{d.country_name}</td> */}
                       <td>{new Date(d.date).toLocaleDateString()}</td>
                       <td>{getOrderStatus(d.status)}</td>
