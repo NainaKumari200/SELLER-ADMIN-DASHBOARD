@@ -29,7 +29,7 @@ export default function FFormElementsInputPlainLgRequired() {
                 navigate("../customers");
               }}
             >
-              <button className="flex bg-customPurple p-1 hover:bg-gray-900 text-white text-md items-center px-4 rounded-md focus:outline-none  ">
+              <button className="flex bg-customPurple p-1 text-white text-md items-center px-4 rounded-md focus:outline-none  ">
                 <AiOutlineClose className="mr-2 scale-125 bg-customPurple fill-white" />
                 Close
               </button>

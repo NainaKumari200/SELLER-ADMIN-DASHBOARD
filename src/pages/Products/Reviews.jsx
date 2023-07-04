@@ -11,30 +11,6 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import mock from "../../dummy_data2.json";
 
-// Function to style the order status
-function getOrderStatus(status) {
-  switch (status) {
-    case "Active":
-      return (
-        <span className="flex justify-center items-center capitalize py-1 px-2 rounded-full text-xs font-bold text-green-500 bg-green-100 border border-green-500">
-          {status}
-        </span>
-      );
-    case "Deactivated":
-      return (
-        <span className="flex justify-center items-center capitalize py-1 px-2 rounded-full text-xs font-bold text-red-500 bg-red-100 border border-red-500">
-          {status}
-        </span>
-      );
-    default:
-      return (
-        <span className="flex justify-center items-center capitalize py-1 px-2 rounded-md text-xs font-bold text-gray-600 bg-gray-100">
-          {status.replaceAll("_", " ").toLowerCase()}
-        </span>
-      );
-  }
-}
-
 // Function for alternate gray and white
 function alternate(index) {
   if (index % 2 !== 0) {
@@ -298,7 +274,7 @@ const Reviews = () => {
                         />
                       </div>
                     </th>  */}
-                    <th>Action</th>
+                    <th className="w-32">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -320,8 +296,8 @@ const Reviews = () => {
 
                       <td>{d.product_name}</td>
                       {/* <td className="pl-8">{d.product_name}</td> */}
-                      <td>{d.rating}</td>
-                      <td>{d.total_reviews}</td>
+                      <td className="pl-7">{d.rating}</td>
+                      <td className="pl-14">{d.total_reviews}</td>
                       {/* <td className="pl-4">{d.currently}</td> */}
                       {/* <td>{new Date(d.date).toLocaleDateString()}</td> */}
                       {/* <td className="">{getOrderStatus(d.status)}</td> */}
@@ -331,13 +307,6 @@ const Reviews = () => {
                         <NavLink to="/products/reviews/reviewsdetails">
 <p className="text-black">View Details</p>
                         </NavLink>
-                          {/* <HiPencil
-                            className="fill-gray-800 mr-2 hover:cursor-pointer"
-                            onClick={() => {
-                              navigate("#");
-                            }}
-                          />
-                          <HiTrash className="fill-red-500" /> */}
                         </div>
                       </td>
                     </tr>

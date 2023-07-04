@@ -42,7 +42,7 @@ const SubMenu = ({ data }) => {
             >
                 {/* <men.icon size={23} className="min-w-max" /> */}
                 <div className="min-w-max">{men.icon}</div>
-                <p className="flex-1 capitalize text-base ">{men.name}</p>
+                <p className="flex-1 capitalize text-base">{men.name}</p>
             </NavLink>
           </li>
         ))}
