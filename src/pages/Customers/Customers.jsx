@@ -270,7 +270,7 @@ const Customers = () => {
                       </div>
                     </th>
 
-                    <th>E-Mail</th>
+                    <th className="pr-64">E-Mail</th>
                     <th>
                       <div className="flex items-center">
                         Date
@@ -308,11 +308,11 @@ const Customers = () => {
                       <td>{d.customer_id}</td>
 
                       <td>{d.customer_name}</td>
-                      <td>{d.email}</td>
+                      <td className="pl-4">{d.email}</td>
                       <td>{new Date(d.date).toLocaleDateString()}</td>
-                      <td>{d.amount}</td>
+                      <td  className="pl-1">{d.amount}</td>
                       <td>{getOrderStatus(d.status)}</td>
-                      <td>
+                      <td className="px-2">
                         <div className="flex justify-center">
                           <HiPencil
                             className="fill-gray-800 mr-2 hover:cursor-pointer"

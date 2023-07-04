@@ -262,7 +262,7 @@ const Orders = () => {
                       </div>
                     </th>
 
-                    <th>E-Mail</th>
+                    <th className="pr-64">E-Mail</th>
                     <th>
                       <div className="flex items-center justify-between">
                         Date
@@ -300,21 +300,21 @@ const Orders = () => {
                       <td>{d.order_no}</td>
 
                       <td>{d.customer_name}</td>
-                      <td>{d.email}</td>
+                      <td className="pl-5">{d.email}</td>
                       <td>{new Date(d.date).toLocaleDateString()}</td>
-                      <td>{d.amount}</td>
+                      <td className="px-1">{d.amount}</td>
                       <td>{getOrderStatus(d.status)}</td>
-                      <td>
+                      <td className="px-1">
                         <div className="flex justify-center">
                           <HiEye name="eye-fill"
-                             className="mr-2 hover:cursor-pointer" 
+                             className="mr-1 hover:cursor-pointer" 
                              onClick={() => {
                               navigate('Details');
                              }}
                              >
                              </HiEye>
                           <HiPencil
-                            className="fill-gray-800 mr-2 hover:cursor-pointer"
+                            className="fill-gray-800 mr-1 hover:cursor-pointer"
                             onClick={() => {
                               navigate("#");
                             }}
