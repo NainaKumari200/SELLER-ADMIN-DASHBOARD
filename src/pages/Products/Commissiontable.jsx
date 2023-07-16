@@ -1,20 +1,18 @@
-import React, { useState } from 'react';
-import {HiTrash,HiPencil} from 'react-icons/hi';
-import {FaSort} from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import { HiTrash, HiPencil } from 'react-icons/hi';
+import { FaSort } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import mock from '../../dummy_data2.json';
-
 
 // Function to style the order status
 function getOrderStatus(status) {
   switch (status) {
-    case "Active":
+    case 'Active':
       return (
         <span className="flex justify-center items-center capitalize py-1 px-2 rounded-full text-xs font-bold text-green-500 bg-green-100 border border-green-500">
           {status}
         </span>
       );
-    case "Deactivated":
+    case 'Deactivated':
       return (
         <span className="flex justify-center items-center capitalize py-1 px-2 rounded-full text-xs font-bold text-red-500 bg-red-100 border border-red-500">
           {status}
@@ -23,43 +21,55 @@ function getOrderStatus(status) {
     default:
       return (
         <span className="flex justify-center items-center capitalize py-1 px-2 rounded-md text-xs font-bold text-gray-600 bg-gray-100">
-          {status.replaceAll("_", " ").toLowerCase()}
+          {status.replaceAll('_', ' ').toLowerCase()}
         </span>
       );
   }
 }
 
-//Function for alternate gray and white
+// Function for alternate gray and white
 function alternate(index) {
-  if (index % 2 !== 0)
-    return "bg-white";
+  if (index % 2 !== 0) return 'bg-white';
 }
 
 const Commisiontable = () => {
   const navigate = useNavigate();
-	const [data,setData] = useState(mock)
-	const [order,setOrder] = useState("ASC")
+  const [data, setData] = useState([]);
+  const [order, setOrder] = useState('ASC');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  // Sort Column
-	const sorting = (col)=>{
-		if(order === "ASC")
-		{
-			const sorted = [...data].sort((a,b)=>
-			a[col].toLowerCase() > b[col].toLowerCase() ? 1 : -1);
-			setData(sorted);
-			setOrder("DSC");
-		}
-		if(order === "DSC")
-		{
-			const sorted = [...data].sort((a,b)=>
-			a[col].toLowerCase() < b[col].toLowerCase() ? 1 : -1);
-			setData(sorted);
-			setOrder("ASC");
-		}
-	}; 
+  useEffect(() => {
+    fetchData();
+  }, []);
 
+  const fetchData = async () => {
+    try {
+      const response = await fetch('/api/commission'); // Replace with the actual API endpoint to fetch commission data
+      const data = await response.json();
+      setData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Sort Column
+  const sorting = (col) => {
+    if (order === 'ASC') {
+      const sorted = [...data].sort((a, b) =>
+        a[col].toLowerCase() > b[col].toLowerCase() ? 1 : -1
+      );
+      setData(sorted);
+      setOrder('DSC');
+    }
+    if (order === 'DSC') {
+      const sorted = [...data].sort((a, b) =>
+        a[col].toLowerCase() < b[col].toLowerCase() ? 1 : -1
+      );
+      setData(sorted);
+      setOrder('ASC');
+    }
+  };
 
   // Pagination
   const totalPages = Math.ceil(data.length / itemsPerPage);
@@ -73,10 +83,6 @@ const Commisiontable = () => {
 
   return (
     <>
-      
-   
-    
-
       {/* Table */}
       <div className="flex flex-col gap-4">
         <div className="flex flex-row gap-4">
@@ -86,20 +92,29 @@ const Commisiontable = () => {
                 <thead>
                   <tr className="font-bold bg-white border-b-2">
                     <th>S. No.</th>
-                    <th className='mytable'>
-                    <div className="flex items-center">
-                    Product ID
-                    <FaSort className="ml-1 hover:cursor-pointer" onClick={() => { sorting("product_id") }} />
-                    </div>
+                    <th className="mytable">
+                      <div className="flex items-center">
+                        Product ID
+                        <FaSort
+                          className="ml-1 hover:cursor-pointer"
+                          onClick={() => {
+                            sorting('product_id');
+                          }}
+                        />
+                      </div>
                     </th>
                     <th>
-                     <div className="flex items-center">
-        Product name
-        <FaSort className="ml-1 hover:cursor-pointer" onClick={() => { sorting("product_name") }} />
-      </div>
+                      <div className="flex items-center">
+                        Product name
+                        <FaSort
+                          className="ml-1 hover:cursor-pointer"
+                          onClick={() => {
+                            sorting('product_name');
+                          }}
+                        />
+                      </div>
                     </th>
-                    {/* <th>E-Mail</th> */}
-                    <th>Commision</th>
+                    <th>Commission</th>
                     <th>Dated From</th>
                     <th>Dated To</th>
                     <th className="w-24">
@@ -108,28 +123,27 @@ const Commisiontable = () => {
                         <FaSort
                           className="hover:cursor-pointer"
                           onClick={() => {
-                            sorting("status");
+                            sorting('status');
                           }}
                         />
                       </div>
-                    </th> 
+                    </th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {currentData.map((d,index) => (
-                    <tr key={startIndex+d.id} className={alternate(startIndex+index+1)}>
-                      <td className='mytable'>{startIndex+index+1}</td>
-                      <td className='pl-2'>{d.product_id}</td>
+                  {currentData.map((d, index) => (
+                    <tr key={startIndex + d.id} className={alternate(startIndex + index + 1)}>
+                      <td className="mytable">{startIndex + index + 1}</td>
+                      <td className="pl-2">{d.product_id}</td>
                       <td>{d.product_name}</td>
-                      {/* <td>{d.email}</td> */}
-                      <td className='pl-5'>{d.commission}</td>
-                      <td className='pl-5'>{new Date(d.dated_from).toLocaleDateString()}</td>
-                      <td className='pl-12'>{new Date(d.dated_to).toLocaleDateString()}</td>
+                      <td className="pl-5">{d.commission}</td>
+                      <td className="pl-5">{new Date(d.dated_from).toLocaleDateString()}</td>
+                      <td className="pl-12">{new Date(d.dated_to).toLocaleDateString()}</td>
                       <td>{getOrderStatus(d.status)}</td>
-                      <td className='pl-5'>
+                      <td className="pl-5">
                         <div className="flex">
-                          <HiPencil className="fill-gray-800 mr-2 hover:cursor-pointer"  />
+                          <HiPencil className="fill-gray-800 mr-2 hover:cursor-pointer" />
                           <HiTrash className="fill-red-500 hover:cursor-pointer" />
                         </div>
                       </td>
@@ -171,8 +185,8 @@ const Commisiontable = () => {
           </div>
         </div>
       </div>
-</>
-  )
-}
+    </>
+  );
+};
 
-export default Commisiontable
+export default Commisiontable;
