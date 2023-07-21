@@ -1,8 +1,92 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import Topbar2 from '../../layouts/Topbar2'
 import Commissiontable from './Commissiontable'
 
 const Commission = () => {
+  
+  const [productid, setProductID] = useState('');
+  const [commission, setCommission] = useState('');
+  const [parentCategory, setParentCategory] = useState([]);
+  const [commissionData, setCommissionData] = useState([]);
+  const [searchquery,setSearchQuery]=useState('');
+ 
+  useEffect(() => {
+  fetchParentCategory();
+  }, [])
+
+  const fetchParentCategory =async()=> {
+      try{
+        const response=await fetch('apiapi/parent_categoryies');
+        const data=await response.json();
+        setParentCategory(data);
+      }
+      catch(error){
+        console.error('Error fetchingparent categories',error);
+      }
+  };
+
+  const handleSearchChange=(e)=>{
+    setSearchQuery(e.target.value);
+
+  }
+
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    
+    // Perform search logic here using the searchQuery value
+    const searchResults = commissionData.filter((item) => {
+      // Customize this condition based on your search criteria
+      return item.name.toLowerCase().includes(searchquery.toLowerCase());
+    });
+    
+    // Update the search results or perform any other necessary actions
+    console.log('Search Results:', searchResults);
+  };
+
+
+
+  const handleAddCategory = async () => {
+  
+    const newCategory = {
+      productid,
+      commission,
+      parentCategory,
+    };
+  
+   try{
+    const response= await fetch ('apiapi/add_category',{
+    
+      method: 'POST',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newCategory)
+    });
+    if(response.ok)
+    {
+      const responseData = await response.json();
+        setCommissionData((prevData) => [...prevData, responseData]);
+        setProductID('');
+        setCommission('');
+        setParentCategory('');
+    }
+    else{
+      console.error('Error in adding category')
+    }
+   }
+   catch (error) {
+    console.error('Error adding category', error);
+  }
+   
+  };
+
+
+
+
+
+
+
   return (
     <>
       <Topbar2/>
@@ -17,34 +101,45 @@ const Commission = () => {
           <div className="">
             <label className="block mb-2">Product ID</label>
             <input
-              class="input-field gap-5"
-              type="text"
-              placeholder="Enter Your name"
-            />
+  className="input-field gap-5"
+  type="text"
+  placeholder="Enter Product ID"
+  value={productid}
+  onChange={(e) => setProductID(e.target.value)}
+/>
           </div>
           <div className="">
             <label className="block mb-2">Commission Percentage</label>
             <input
-              class="input-field gap-5"
-              type="text"
-              placeholder="Enter Your Last name"
-            />
+  className="input-field gap-5"
+  type="text"
+  placeholder="Enter Commission Percentage"
+  value={commission}
+  onChange={(e) => setCommission(e.target.value)}
+/>
           </div>
           <div>
             <label className="block mb-4">Parent Categories</label>
-            <select name="Categories" id="" className="mr-20 w-40">
-              <option value="Cake">Cake</option>
-              <option value="Flower">Flower</option>
-              <option value="Chocolates">Chocolates</option>
-              <option value="Jewellery">Jewellery</option>
-            </select>
+            <select
+  name="Categories"
+  id=""
+  className="mr-20 w-40"
+  value={parentCategory}
+  onChange={(e) => setParentCategory(e.target.value)}
+>
+{parentCategory.map((category) => (
+    <option key={category.id} value={category.id}>
+      {category.name}
+    </option>
+  ))}
+</select>
           </div>
          
         </div>
 
 
         <div className="flex items-stretch ml-5 mt-4 focus:bg-gray-900">
-        <button className="flex bg-customPurple rounded-md text-white items-center px-4 py-1 gap-2 focus:outline-none">
+        <button className="flex bg-customPurple rounded-md text-white items-center px-4 py-1 gap-2 focus:outline-none" onClick={handleAddCategory}>
           Add Categories
           <ion-icon name="send" className="text-white "></ion-icon>
         </button>
@@ -55,6 +150,8 @@ const Commission = () => {
           type="text"
           placeholder="Search here..."
           className="sm:px-4 px-2 sm:py-2 py-0 rounded-l-md focus:outline-gray-900"
+          value={searchquery}
+    onChange={handleSearchChange}
         />
         <button className="bg-customPurple text-white font-bold py-2 px-4 rounded-r-md focus:outline-none">
           <ion-icon name="search-outline" className="text-white"></ion-icon>
@@ -62,7 +159,7 @@ const Commission = () => {
       </div>
 
       <div className="mt-4">
-        <Commissiontable />
+       <Commissiontable commissionData={commissionData} />
       </div>
     </>
   )
