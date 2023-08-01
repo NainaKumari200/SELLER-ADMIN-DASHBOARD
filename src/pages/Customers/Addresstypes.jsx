@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Topbar2 from "../../layouts/Topbar2";
 import { HiTrash, HiPencil } from "react-icons/hi";
 import {
@@ -49,7 +49,45 @@ function AddressTypes() {
   const [data, setData] = useState(mock);
   const [order, setOrder] = useState("ASC");
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const itemsPerPage = 15;
+  
+  // // Function to fetch data from the API
+  // const fetchData = async () => {
+  //   try {
+  //     // Make the API call here and replace 'API_ENDPOINT' with your actual API endpoint URL
+  //     const response = await fetch(API_ENDPOINT);
+  //     if (!response.ok) {
+  //       throw new Error("Failed to fetch data");
+  //     }
+  //     const data = await response.json();
+  //     setData(data); // Update the data state with the retrieved data
+  //     setLoading(false);
+  //   } catch (err) {
+  //     setError(err.message);
+  //     setLoading(false);
+  //   }
+  // };
+
+  // Function to fetch data from the API
+  const fetchData = async () => {
+    try {
+      // Simulating an API call delay of 1 second using setTimeout
+      setTimeout(() => {
+        setData(mock); // Update the data state with the dummyData
+        setLoading(false);
+      }, 1000);
+    } catch (err) {
+      setError("Failed to fetch data");
+      setLoading(false);
+    }
+  };
+  // Use useEffect hook to fetch data when the component mounts
+  useEffect(() => {
+    fetchData();
+  }, []);
+
 
   // Sort Column
   const sorting = (col) => {
@@ -120,6 +158,16 @@ function AddressTypes() {
     setData(filteredData);
     setShowFilter(false);
   };
+
+  
+  if (loading) {
+    return <div>Loading...</div>;
+    
+  }
+
+  if (error) {
+   return <div>Error: {error}</div>;
+  }
 
   return (
     <>
